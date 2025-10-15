@@ -24,7 +24,7 @@ export default async function AdminLayout({
           <span className={LogoFont.className}>ingsman Manager</span>
         </h1>
       </Link>
-      {children}
+      <div className="w-10/12 mx-auto">{children}</div>
     </div>
   );
 }

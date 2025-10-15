@@ -9,7 +9,7 @@ export default function LayoutBannerAdmin({
   children: React.ReactNode;
 }) {
   return (
-    <div className="w-10/12 mx-auto">
+    <div>
       <div className="mb-3">
         <Modal
           buttonTxt={

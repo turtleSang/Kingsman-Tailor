@@ -15,22 +15,16 @@ const LargeCardSkeleton = () => {
       <div className="pl-5 w-2/3">
         {/* Dòng 1: ID */}
         <div className="flex flex-row mb-2">
-          <span className="text-white text-sm md:text-base w-4/12">ID:</span>
-          {/* Placeholder cho giá trị ID: thanh xám ngắn */}
           <div className="w-6/12 h-4 bg-gray-600 rounded mt-1"></div>
         </div>
 
         {/* Dòng 2: Mô tả (Description) */}
         <div className="flex flex-row mb-2">
-          <span className="text-white text-sm md:text-base w-4/12">Mô tả:</span>
-          {/* Placeholder cho giá trị Mô tả: thanh xám dài hơn */}
           <div className="w-8/12 h-4 bg-gray-600 rounded mt-1"></div>
         </div>
 
         {/* Dòng 3: Link */}
         <div className="flex flex-row mb-2">
-          <span className="text-white text-sm md:text-base w-4/12">Link:</span>
-          {/* Placeholder cho giá trị Link: thanh xám trung bình */}
           <div className="w-7/12 h-4 bg-gray-600 rounded mt-1"></div>
         </div>
 

@@ -21,26 +21,26 @@ export const ListAdminMananger: {
   {
     title: "feedback",
     icon: faComment,
-    link: "feedback",
+    link: "/admin/feedback",
     description: "Thêm xóa sửa feedback của khách hàng",
   },
   {
     title: "category",
     icon: faList,
-    link: "category",
+    link: "/admin/category",
     description: "Thêm hoặc chỉnh sửa danh mục hàng",
   },
   {
     title: "product",
     icon: faShirt,
-    link: "product",
+    link: "/admin/product",
     description: "Thêm xóa sửa sản phẩm",
   },
 ];
 
 export default function Page() {
   return (
-    <div className=" mx-auto w-10/12">
+    <div className="">
       <div className="grid gap-1 grid-cols-1 md:grid-cols-2">
         {ListAdminMananger.map((item, index) => {
           return (
