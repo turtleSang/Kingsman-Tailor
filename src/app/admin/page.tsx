@@ -59,6 +59,11 @@ export default function Page() {
           );
         })}
       </div>
+      <div className="my-10 text-center">
+        <Link className="button-normal inline-block" href={"/api/auth/signout"}>
+          Đăng xuất
+        </Link>
+      </div>
     </div>
   );
 }

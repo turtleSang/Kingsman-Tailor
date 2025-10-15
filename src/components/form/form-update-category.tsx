@@ -93,7 +93,7 @@ export default function FormUpdateCategory({
           handleNotification(newNotification);
         }
         setTimeout(() => {
-          router.push("/admin/banner");
+          router.push("/admin/category");
         }, 1000);
       })
       .catch((err) => {
@@ -111,7 +111,6 @@ export default function FormUpdateCategory({
       });
   };
 
-  useState<string>(name);
   return (
     <div className="relative">
       {isLoading && <Loading />}
