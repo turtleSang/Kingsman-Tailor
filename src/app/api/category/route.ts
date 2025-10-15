@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/../libs/prisma";
-import { CheckFileExist, NametoLink, RemoveFile, SaveFile } from "../../../../libs/helper";
+import { CheckFileExist, NametoLink, RemoveAndCheckFile, RemoveFile, SaveFile } from "../../../../libs/helper";
 import path from "path";
 import { categoryFolderImage } from "../../../../libs/constance";
 
@@ -19,7 +19,7 @@ export async function POST(req: Request) {
 
     if (cateImg) {
         fileName = `${cateLink}-${Date.now()}.${cateImg.name.split('.').pop()}`;
-        imgUrl = path.join(categoryFolderImage, fileName);
+        imgUrl = `${categoryFolderImage}/${fileName}`;
     }
 
 
@@ -71,15 +71,15 @@ export async function PUT(req: Request,) {
         if (cateImg) {
             //Delete old image
             if (category.urlImg) {
-                const oldPath = path.join(process.cwd(), "public", category.urlImg);
-                if (await CheckFileExist(oldPath)) {
-                    await RemoveFile(oldPath);
+                const oldCategoryImagePath = path.join(process.cwd(), "public", category.urlImg)
+                if (await CheckFileExist(oldCategoryImagePath)) {
+                    await RemoveFile(oldCategoryImagePath)
                 }
             }
             //Save new Image
             const fileName = `${newLink}-${Date.now()}.${cateImg.name.split('.').pop()}`;
             await SaveFile(cateImg, categoryFolderImage, fileName)
-            newImgLink = path.join(categoryFolderImage, fileName);
+            newImgLink = `${categoryFolderImage}/${fileName}`;
         }
         const cateUpdate = await prisma.category.update({
             where: { id: id },

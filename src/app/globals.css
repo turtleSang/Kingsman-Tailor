@@ -1,26 +1,94 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0f0f0f;
+  --primary: #f5b400;
+  --primary-dark: #c58f00;
+  --secondary: #1c1c1c;
+  --secondary-hover: #242424;
+  --text-primary: #ededed;
+  --text-secondary: #a1a1a1;
+  --border: #2e2e2e;
 }
 
 @theme inline {
   --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-primary: var(--primary);
+  --color-primary-dark: var(--primary-dark);
+  --color-secondary: var(--secondary);
+  --color-secondary-hover: var(--secondary-hover);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-border: var(--border);
 }
 
 body {
   background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--text-primary);
+  font-family: var(--font-inter);
+}
+h1,
+h2,
+h3 {
+  font-family: var(--font-montserrat), sans-serif;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #f5b400; /* vàng gold từ logo */
+}
+
+/* Tuỳ chỉnh kích thước và khoảng cách */
+h1 {
+  @apply text-5xl md:text-6xl mb-4;
+}
+h2 {
+  @apply text-3xl md:text-4xl mb-3;
+}
+h3 {
+  @apply text-2xl md:text-3xl mb-2;
+}
+
+h4 {
+  @apply text-xl md:text-2xl mb-2 text-[--color-text-primary];
+}
+
+h5 {
+  @apply text-lg md:text-xl mb-1 text-[--color-text-primary];
+}
+
+h6 {
+  @apply text-base font-semibold tracking-wide uppercase text-[--color-text-secondary];
+}
+
+/* Đoạn văn mặc định */
+p {
+  @apply text-sm md:text-base font-normal text-text-secondary leading-relaxed;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* Custom */
+.button-normal {
+  @apply bg-primary hover:bg-primary-dark text-black font-semibold rounded-xl transition px-4 py-2 text-sm sm:px-5 sm:py-3 sm:text-base md:px-6 md:py-3.5 md:text-lg;
+}
+
+.button-circle {
+  @apply flex items-center justify-center rounded-full bg-primary hover:bg-primary-dark  text-black transition font-semibold w-10 h-10 text-base sm:w-12 sm:h-12 sm:text-lg md:w-14 md:h-14 md:text-xl;
+}
+
+.button-outline {
+  @apply border border-primary text-primary font-semibold rounded-xl transition bg-transparent px-4 py-2 text-sm sm:px-5 sm:py-3 sm:text-base md:px-6 md:py-3.5 md:text-lg hover:bg-primary-dark hover:text-black;
+}
+
+input:disabled {
+  @apply bg-text-secondary opacity-60;
+}
+
+.input-text {
+  @apply rounded-lg p-2 block w-full focus-visible:outline-0 border-2 border-border focus:border-primary-dark;
+}
+
+.input-area {
+  @apply block resize-none rounded-lg p-2 w-full focus-visible:outline-0 border-2 border-border focus:border-primary-dark;
 }

@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 
+
 const publicDir = path.join(process.cwd(), "public");
 
 
@@ -32,6 +33,11 @@ export const RemoveFile = async (filePath: string): Promise<void> => {
     } catch (error) {
         console.error(`Error deleting file: ${filePath}`, error);
     }
+}
+
+export const RemoveAndCheckFile = async (link: string): Promise<void> => {
+    const filePath = path.join(publicDir, link)
+    console.log(filePath)
 }
 
 export const SaveFile = async (file: File, folderName: string, filename: string,) => {

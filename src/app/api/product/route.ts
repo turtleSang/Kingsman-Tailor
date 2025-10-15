@@ -36,7 +36,7 @@ export async function POST(req: Request) {
     //Check Thumbnail
     if (thumbnailFile) {
         const fileName = `${NametoLink(name)}-thumbnail-${Date.now()}.${thumbnailFile.name.split('.').pop()}`;
-        thumbnail = path.join(productFolderImage, fileName);
+        thumbnail = `${productFolderImage}/${fileName})`;
         await SaveFile(thumbnailFile, productFolderImage, fileName)
     }
 
@@ -55,7 +55,7 @@ export async function POST(req: Request) {
         if (listImg.length > 0) {
             for (const img of listImg) {
                 const fileName = `${product.link}-${Date.now()}.${img.name.split('.').pop()}`;
-                const imgUrl = path.join(productFolderImage, fileName);
+                const imgUrl = `${productFolderImage}/${fileName})`;
                 await prisma.imageUrl.create({
                     data: {
                         url: imgUrl,
@@ -186,7 +186,7 @@ export async function PUT(req: Request) {
             }
         }
         const fileName = `${NametoLink(name)}-thumbnail-${Date.now()}.${thumbnailFile.name.split('.').pop()}`;
-        thumbnail = path.join(productFolderImage, fileName)
+        thumbnail = `${productFolderImage}/${fileName}`
         await SaveFile(thumbnailFile, productFolderImage, fileName)
     }
 
@@ -226,7 +226,7 @@ export async function PUT(req: Request) {
 
             await SaveFile(image, productFolderImage, fileName)
 
-            const url = path.join(productFolderImage, fileName);
+            const url = `${productFolderImage}/${fileName}`;
             await prisma.imageUrl.create({
                 data: {
                     url: url,
