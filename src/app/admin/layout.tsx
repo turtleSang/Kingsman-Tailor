@@ -4,6 +4,11 @@ import { authOption } from "../api/auth/[...nextauth]/route";
 import Image from "next/image";
 import { LogoFont } from "../layout";
 import Link from "next/link";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Quản lý cửa hàng Kingsman",
+};
 
 export default async function AdminLayout({
   children,

@@ -4,7 +4,6 @@ import { prisma } from "../../../../../libs/prisma";
 export async function GET(req: Request) {
     const url = new URL(req.url);
     const productLink = url.searchParams.get("product") || "";
-    console.log(productLink);
     const product = await prisma.product.findFirst({
         where: { link: productLink },
         include: { category: true, imagesUrl: true }

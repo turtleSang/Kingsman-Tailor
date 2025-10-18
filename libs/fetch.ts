@@ -15,9 +15,7 @@ export const useCategory = () => {
 
 export const useBanner = () => {
     const url = `${process.env.NEXT_PUBLIC_API_URL}/banner`;
-
     const { data, error, isLoading } = useSWR(url, fetchSimple);
     const banners = data as { id: number, imageUrl: string, link: string, description: string }[]
     return { banners, error, isLoading }
-
 }

@@ -23,7 +23,7 @@ export default function ProductCardMainPage({
     >
       <Link
         className="group block relative rounded-sm overflow-hidden"
-        href={`/${category.link}/${link}`}
+        href={`/san-pham/${category.link}/${link}`}
       >
         <div className="relative aspect-square">
           <Image src={`/${thumbnail}`} fill alt={name} />

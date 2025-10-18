@@ -17,7 +17,7 @@ export default function CategoryCard({
   return (
     <Link
       className="block rounded-sm overflow-hidden bg-secondary hover:bg-secondary-hover hover:scale-105 duration-200"
-      href={link}
+      href={`/san-pham/${link}`}
     >
       <div className="relative aspect-video">
         <Image src={`/${urlImg}`} alt={`Danh mục sản phẩm ${name}`} fill />

@@ -28,7 +28,12 @@ export default function NavLinkGroup() {
   const [activeMenu, setActiveMenu] = useState(false);
 
   useEffect(() => {
-    setTab(pathName);
+    const listPath = pathName.split("/");
+    if (listPath[1]) {
+      setTab(`/${listPath[1]}`);
+    } else {
+      setTab("");
+    }
   }, [pathName]);
 
   return (

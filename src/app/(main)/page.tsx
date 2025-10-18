@@ -6,6 +6,7 @@ import ProductNewMainPage from "@/layout/product-new-main-page";
 import CategoryListMainPage from "@/layout/category-list-main-page";
 import Loading from "@/components/loading";
 import FeedBackListMainPage from "@/layout/feedback-list-main-page";
+
 export const metadata: Metadata = {
   title: "Kingsman - Âu Phục May Đo Cao Cấp",
   description:
@@ -24,6 +25,7 @@ export const metadata: Metadata = {
       "May đo âu phục cao cấp, sử dụng vải Ý/Anh, cắt may thủ công để tạo nên bộ suit vừa vặn hoàn hảo, thể hiện phong cách riêng của bạn.",
     type: "website",
     locale: "vi-VN",
+    images: [{ url: "/default.jpg", width: 1280, height: 720 }],
   },
 };
 

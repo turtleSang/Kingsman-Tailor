@@ -14,8 +14,6 @@ export default function BannerItem({
   link: string;
   description: string;
 }) {
-  console.log(imageUrl);
-
   return (
     <div className="relative w-full aspect-video max-h-[100vh]">
       <div className="absolute aspect-video w-full z-0">

@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function Loading() {
   return (
-    <div className="absolute w-full h-full top-1/2 left-1/2 -translate-1/2 z-50 bg-gray-500/50">
+    <div className="absolute w-full h-full top-1/2 left-1/2 -translate-1/2 z-50 bg-secondary/50">
       <div className="absolute w-1/3 top-1/2 left-1/2 -translate-1/2">
         <div className="relative aspect-square">
           <motion.div

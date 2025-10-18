@@ -63,7 +63,7 @@ export default function DropdownNav({ activeTab }: { activeTab: string }) {
                 return (
                   <Link
                     key={val.id}
-                    href={`/product/${val.link}`}
+                    href={`/san-pham/${val.link}`}
                     className="capitalize text-text-primary hover:text-primary"
                   >
                     {val.name}
