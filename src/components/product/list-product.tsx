@@ -70,21 +70,21 @@ export default function ListProduct({ urlLink }: { urlLink?: string }) {
               />
             );
           })}
-        {canShowMore && (
-          <div className="mt-5 flex justify-center">
-            <button
-              className="button-normal"
-              onClick={() => {
-                const pageNumber = page + 1;
-                setPage(pageNumber);
-                getListProduct(pageNumber);
-              }}
-            >
-              Xem Thêm
-            </button>
-          </div>
-        )}
       </div>
+      {canShowMore && (
+        <div className="mt-5 flex justify-center">
+          <button
+            className="button-normal"
+            onClick={() => {
+              const pageNumber = page + 1;
+              setPage(pageNumber);
+              getListProduct(pageNumber);
+            }}
+          >
+            Xem Thêm
+          </button>
+        </div>
+      )}
     </>
   );
 }
