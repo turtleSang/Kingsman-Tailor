@@ -2,11 +2,14 @@ import { NextResponse } from "next/server";
 import { prisma } from "../../../../libs/prisma";
 import { CheckFileExist, NametoLink, RemoveFile, SaveFile } from "../../../../libs/helper";
 import path from "path";
-import { writeFile } from "fs/promises";
-import { NextApiRequest } from "next";
 import { pageSize, productFolderImage } from "../../../../libs/constance";
+import { getServerSession } from "next-auth";
 
 export async function POST(req: Request) {
+    const session = await getServerSession();
+    if (!session) {
+        return NextResponse.json({ message: "Không có quyền" }, { status: 403 });
+    }
     const formData = await req.formData();
     const name = formData.get('name')?.toString() || '';
     const price = formData.get('price')?.toString() || '';
@@ -36,7 +39,7 @@ export async function POST(req: Request) {
     //Check Thumbnail
     if (thumbnailFile) {
         const fileName = `${NametoLink(name)}-thumbnail-${Date.now()}.${thumbnailFile.name.split('.').pop()}`;
-        thumbnail = `${productFolderImage}/${fileName})`;
+        thumbnail = `${productFolderImage}/${fileName}`;
         await SaveFile(thumbnailFile, productFolderImage, fileName)
     }
 
@@ -55,7 +58,7 @@ export async function POST(req: Request) {
         if (listImg.length > 0) {
             for (const img of listImg) {
                 const fileName = `${product.link}-${Date.now()}.${img.name.split('.').pop()}`;
-                const imgUrl = `${productFolderImage}/${fileName})`;
+                const imgUrl = `${productFolderImage}/${fileName}`;
                 await prisma.imageUrl.create({
                     data: {
                         url: imgUrl,
@@ -77,16 +80,18 @@ export async function GET(req: Request) {
 
     const page = Number(url.searchParams.get("page")) || 1;
 
-    const listNewProduct = await prisma.product.findMany({
-        skip: (page - 1) * pageSize,
-        take: 5,
-        include: { category: true, imagesUrl: true },
-        orderBy: { createdAt: 'desc' }
-    });
-    if (listNewProduct.length === 0) {
-        return NextResponse.json({ message: 'Không có sản phẩm nào' }, { status: 404 });
-    }
-    return NextResponse.json(listNewProduct);
+    const [listProduct, itemCount] = await Promise.all([
+        await prisma.product.findMany({
+            skip: (page - 1) * pageSize,
+            take: pageSize,
+            include: { category: true },
+            orderBy: { createdAt: 'desc' }
+        }),
+        await prisma.product.count()
+    ])
+    const hasMore = pageSize * page < itemCount;
+
+    return NextResponse.json({ listProduct, hasMore });
 }
 
 export async function DELETE(req: Request) {

@@ -26,7 +26,7 @@ model Product {
   id Int @id @default(autoincrement())
   name String @unique
   link String @unique
-  description String?
+  description String?@db.Text
   price Float @default(0)
   thumbnail String?
   imagesUrl ImageUrl[]
@@ -54,5 +54,5 @@ model FeedBack{
   id Int @id @default(autoincrement())
   image String
   customerName String
-  feedback String
+  feedback String @db.Text
 }

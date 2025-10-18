@@ -139,7 +139,11 @@ export default function FormUpdateBanner({
         value={inputLink.toString()}
         onChange={(e) => handleLink(e)}
       />
-      <InputImageSingle oldFile={imageUrl} handleFile={handleFileUpdate} />
+      <InputImageSingle
+        labelName="Upload hình ảnh banner"
+        oldFile={imageUrl}
+        handleFile={handleFileUpdate}
+      />
       <div className="p-3 flex flex-row justify-around">
         <button className="button-normal" onClick={handleUpdate}>
           Cập nhật

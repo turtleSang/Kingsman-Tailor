@@ -93,7 +93,7 @@ export async function PUT(req: Request) {
 export async function GET() {
     const listBanner = await prisma.banner.findMany();
     if (listBanner.length > 0) {
-        return NextResponse.json({ listBanner }, { status: 200 })
+        return NextResponse.json(listBanner, { status: 200 })
     } else {
         return NextResponse.json({ message: "Không tìm thấy banner" }, { status: 404 })
     }

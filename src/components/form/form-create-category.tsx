@@ -91,7 +91,10 @@ export default function FormCreateCategory() {
         placeholder="Nhập tên danh mục"
         onChange={(e) => handleName(e)}
       />
-      <InputImageSingle handleFile={handleFile} />
+      <InputImageSingle
+        labelName="Upload hình category"
+        handleFile={handleFile}
+      />
       <div className="flex justify-center items-center mt-3">
         <button
           type="button"

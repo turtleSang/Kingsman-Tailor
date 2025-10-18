@@ -108,7 +108,10 @@ export default function FormCreateFeedback() {
         placeholder="Nhập feedback của khách hàng"
         onChange={(event) => handleFeedBack(event)}
       />
-      <InputImageSingle handleFile={SetImage} />
+      <InputImageSingle
+        labelName="Upload hình ảnh khách hàng"
+        handleFile={SetImage}
+      />
       <div className="text-center mt-2">
         <button className="button-normal" type="button" onClick={HandleUpload}>
           Tạo Feedback

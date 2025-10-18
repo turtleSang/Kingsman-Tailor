@@ -99,7 +99,7 @@ export default function FormCreateBanner() {
       {isLoading && <Loading />}
       <InputText
         placeholder="Liên kết sản phẩm/chương trình"
-        lableName="Liên kết:"
+        lableName="Liên kết"
         onChange={(event) => {
           SetLink(event);
         }}
@@ -109,7 +109,7 @@ export default function FormCreateBanner() {
         placeholder="Mô tả về chương trình hoặc sản phẩm trên banner"
         onChange={(event) => SetDescription(event)}
       />
-      <InputImageSingle handleFile={SetImage} />
+      <InputImageSingle labelName="Upload Banner" handleFile={SetImage} />
       <div className="text-center mt-2">
         <button className="button-normal" type="button" onClick={HandleUpload}>
           Tạo Banner

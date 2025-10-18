@@ -145,7 +145,11 @@ export default function FormUpdateFeedback({
         onChange={(event) => handleFeedBack(event)}
         value={feedback}
       />
-      <InputImageSingle handleFile={SetImage} oldFile={imageOld} />
+      <InputImageSingle
+        labelName="Upload hình ảnh khách hàng"
+        handleFile={SetImage}
+        oldFile={imageOld}
+      />
       <div className="text-center my-3 flex justify-around">
         <button className="button-normal" type="button" onClick={HandleUpload}>
           Cập nhật Feedback

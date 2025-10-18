@@ -124,7 +124,11 @@ export default function FormUpdateCategory({
         value={inputName}
         onChange={(e) => handleName(e)}
       />
-      <InputImageSingle handleFile={handleFile} oldFile={urlImg} />
+      <InputImageSingle
+        labelName="Upload hình ảnh category"
+        handleFile={handleFile}
+        oldFile={urlImg}
+      />
       <div className="p-3 flex flex-row justify-around">
         <button className="button-normal" onClick={handleUpdate}>
           Cập nhật danh mục

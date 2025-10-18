@@ -28,8 +28,7 @@ body {
   font-family: var(--font-inter);
 }
 h1,
-h2,
-h3 {
+h2 {
   font-family: var(--font-montserrat), sans-serif;
   font-weight: 600;
   line-height: 1.2;
@@ -43,16 +42,9 @@ h1 {
 h2 {
   @apply text-3xl md:text-4xl mb-3;
 }
-h3 {
-  @apply text-2xl md:text-3xl mb-2;
-}
 
 h4 {
   @apply text-xl md:text-2xl mb-2 text-[--color-text-primary];
-}
-
-h5 {
-  @apply text-lg md:text-xl mb-1 text-[--color-text-primary];
 }
 
 h6 {
@@ -91,4 +83,39 @@ input:disabled {
 
 .input-area {
   @apply block resize-none rounded-lg p-2 w-full focus-visible:outline-0 border-2 border-border focus:border-primary-dark;
+}
+
+.swiper-pagination-bullet {
+  /* Kích thước: Chấm tròn 10x10px */
+  width: 30px !important;
+  height: 5px !important;
+  border-radius: 3px !important;
+
+  /* Màu nền chưa chọn (Ví dụ: xám nhạt) */
+  background: var(--border) !important; /* Tailwind gray-300 */
+
+  /* Tăng khoảng cách giữa các chấm */
+  margin: 0 6px !important;
+
+  /* Loại bỏ độ mờ mặc định */
+  opacity: 1 !important;
+
+  /* Tạo hiệu ứng chuyển đổi mượt mà */
+  transition: all 0.3s ease-in-out;
+}
+.swiper-pagination-bullet-active {
+  background: var(--primary) !important;
+}
+.swiper-pagination {
+  text-align: right !important;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: var(--primary) !important;
+  background: rgba(0, 0, 0, 0.445) !important;
+  width: 50px !important;
+  height: 50px !important;
+  border-radius: 100%;
+  overflow: hidden;
 }

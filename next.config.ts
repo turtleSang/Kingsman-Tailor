@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {
   /* config options here */
   images: {
     remotePatterns: [
-      { hostname: 'localhost', port: '3000' }
+      // { hostname: 'localhost', port: '3000' }
     ]
   }
 };

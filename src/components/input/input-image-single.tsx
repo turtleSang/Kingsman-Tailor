@@ -5,10 +5,12 @@ import { InputHTMLAttributes, useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
 
 export default function InputImageSingle({
+  labelName,
   oldFile,
   handleFile,
 }: {
   oldFile?: String;
+  labelName: string;
   handleFile: (file: File) => void;
 }) {
   const { acceptedFiles, isDragActive, getRootProps, getInputProps } =
@@ -55,32 +57,34 @@ export default function InputImageSingle({
 
   return (
     <div>
-      <span>Upload Hình ảnh Banner</span>
-      {previewImageUrl && (
-        <div className="relative aspect-video">
-          <Image
-            className="z-0"
-            src={previewImageUrl}
-            fill={true}
-            alt="Upload Image"
-          />
-        </div>
-      )}
-      <div
-        className="mt-2 rounded-lg border-2 border-border cursor-pointer h-24 flex items-center justify-center"
-        {...getRootProps()}
-      >
-        <input {...getInputProps()} />
-        {isDragActive ? (
-          <div>Drop the files here ...</div>
-        ) : (
-          <div className="text-center">
-            <span className="block">
-              <FontAwesomeIcon icon={faUpload} />
-            </span>
-            DROP FILE IMAGE HERE
+      <span>{labelName}</span>
+      <div className="grid grid-cols-2 items-center gap-3">
+        {previewImageUrl && (
+          <div className="relative aspect-video rounded-md overflow-hidden">
+            <Image
+              className="z-0"
+              src={previewImageUrl}
+              fill={true}
+              alt="Upload Image"
+            />
           </div>
         )}
+        <div
+          className="mt-2  rounded-lg border-2 border-border cursor-pointer h-full flex items-center justify-center"
+          {...getRootProps()}
+        >
+          <input {...getInputProps()} />
+          {isDragActive ? (
+            <div>Drop the files here ...</div>
+          ) : (
+            <div className="text-center">
+              <span className="block">
+                <FontAwesomeIcon icon={faUpload} />
+              </span>
+              DROP FILE IMAGE HERE
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

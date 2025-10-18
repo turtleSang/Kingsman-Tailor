@@ -9,13 +9,13 @@ export default async function PageBannerAdmin() {
   const data = await fetch(url);
   const result = await data.json();
 
-  if (!result.listBanner) {
+  if (!result) {
     return (
       <NotFound title="Not Found 404" description="Không tìm thấy banner nào" />
     );
   }
 
-  const listBanner = result.listBanner as Banner[];
+  const listBanner = result as Banner[];
 
   if (listBanner.length == 0 || !result) {
     return (

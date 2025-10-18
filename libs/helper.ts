@@ -4,8 +4,6 @@ import path from "path";
 
 const publicDir = path.join(process.cwd(), "public");
 
-
-
 export const NametoLink = (name: string) => {
     return name.normalize('NFD')                     // Tách ký tự gốc và dấu
         .replace(/[\u0300-\u036f]/g, '')      // Xóa các dấu thanh
@@ -14,8 +12,6 @@ export const NametoLink = (name: string) => {
         .replace(/\s+/g, '-')                 // Thay khoảng trắng bằng dấu -
         .toLowerCase();                       // Chuyển về chữ thườ
 }
-
-
 
 export const CheckFileExist = async (filePath: string): Promise<boolean> => {
     try {

@@ -41,7 +41,7 @@ export default function Modal({ data, buttonProps, buttonTxt }: ModalPops) {
         <AnimatePresence>
           {isOpenModal && (
             <motion.div
-              className="fixed top-0 left-0 w-full h-[100vh] z-10"
+              className="fixed top-0 left-0 w-full h-[100vh] z-20"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
