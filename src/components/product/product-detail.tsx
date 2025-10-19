@@ -28,7 +28,7 @@ export default function ProductDetail({
   });
 
   return (
-    <div className="grid grid-cols-2">
+    <div className="grid grid-cols-1 md:grid-cols-2">
       <div className=" relative p-3">
         <SilderProductImage images={listImage} name={`Sản phẩm ${name}`} />
       </div>
@@ -41,25 +41,25 @@ export default function ProductDetail({
         >
           {name}
         </h3>
-        <h3 className="text-primary-dark text-xl md:text-3xl lg:text-5xl text-right">
+        <h3 className="text-primary-dark mt-3 text-xl md:text-3xl lg:text-5xl text-right">
           {formatCurrency(price)} <sup>VNĐ</sup>
         </h3>
-        <p>{description}</p>
-        <div className="text-center">
+        <p className="mt-3">{description}</p>
+        <div className="text-center mt-3">
           <a
-            className="inline-block button-normal w-7/12"
+            className="inline-block text-justify button-normal w-7/12"
             href="tel:0388858682"
           >
-            Liên hệ đặt lịch ngay
+            Đặt lịch ngay
             <FontAwesomeIcon className="ml-3" icon={faPhone} />
           </a>
           <br />
           <a
-            className="inline-block button-outline mt-3 w-7/12"
+            className="inline-block text-justify button-outline mt-3 w-7/12"
             href="https://www.facebook.com/Hentoribespoke.suitmaydo.thudaumot"
             target="_blank"
           >
-            Liên hệ qua Facebook{" "}
+            Facebook
             <FontAwesomeIcon className="ml-3" icon={faFacebook} />
           </a>
         </div>

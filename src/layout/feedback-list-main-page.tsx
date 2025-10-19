@@ -13,10 +13,10 @@ export default async function FeedBackListMainPage() {
     const res = await axios.get(url, { params: { page: 1 } });
     const listFeedback = res.data.listFeedback as FeedBackCardProps[];
     return (
-      <div className="mt-5">
+      <div className="mt-10">
         <h2
           className={clsx(
-            "text-center uppercase w-8/12 mx-auto",
+            "text-center uppercase w-full mx-auto",
             LogoFont.className
           )}
         >

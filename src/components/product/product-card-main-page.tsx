@@ -29,11 +29,18 @@ export default function ProductCardMainPage({
           <Image src={`/${thumbnail}`} fill alt={name} />
         </div>
         <div className="bg-secondary/75 lg:absolute lg:w-full lg:bottom-0 lg:left-0 p-2 lg:translate-y-2/3 group-hover:translate-y-0 duration-200">
-          <h3 className=" uppercase text-base">{truncateWords(name, 5)}</h3>
-          <h4 className="text-primary text-right text-xs">
-            {formatCurrency(price)} <sup className="text-xs">VNĐ</sup>
+          <h3 className="uppercase text-base text-nowrap md:text-2xl lg:text-xl">
+            {truncateWords(name, 5)}
+          </h3>
+          <h4 className="text-primary text-right">
+            <span className="text-base md:text-2xl">
+              {formatCurrency(price)}
+            </span>{" "}
+            <sup className="text-xs">VNĐ</sup>
           </h4>
-          <p className="text-justify">{truncateWords(description, 5)}</p>
+          <p className="text-justify text-nowrap">
+            {truncateWords(description, 5)}
+          </p>
         </div>
       </Link>
     </motion.div>

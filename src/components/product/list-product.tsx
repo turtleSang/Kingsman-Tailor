@@ -54,7 +54,6 @@ export default function ListProduct({ urlLink }: { urlLink?: string }) {
         />
       )}
       <div className="grid grid-cols-2 lg:grid-cols-3 gap-3">
-        {isLoading && <ProductCardSkeleton />}
         {listProduct.length > 0 &&
           listProduct.map((product) => {
             return (
@@ -70,6 +69,7 @@ export default function ListProduct({ urlLink }: { urlLink?: string }) {
               />
             );
           })}
+        {isLoading && <ProductCardSkeleton />}
       </div>
       {canShowMore && (
         <div className="mt-5 flex justify-center">

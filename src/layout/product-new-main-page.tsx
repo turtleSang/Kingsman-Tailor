@@ -15,7 +15,7 @@ export default async function ProductNewMainPage() {
     const listProductNew = res.data.listProduct as ProductCardProps[];
 
     return (
-      <div className="mt-5">
+      <div className="mt-10">
         <h2
           className={clsx(
             "text-center uppercase  w-8/12 mx-auto",

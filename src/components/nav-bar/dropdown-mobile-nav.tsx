@@ -27,7 +27,7 @@ export default function DropDownMobile({
       <div className="flex flex-row justify-between items-center">
         <Link
           className={clsx(
-            "block p-5 text-xl capitalize mb-2",
+            "block w-9/12 py-5 pl-5 text-xl capitalize mb-2",
             activeTab === link && "text-primary"
           )}
           href={link}
@@ -37,7 +37,7 @@ export default function DropDownMobile({
           {name}
         </Link>
         <button
-          className="ml-10 text-text-primary p-5 mb-2"
+          className="mx-auto w-2/12 text-text-primary py-5 mb-2"
           onClick={() => setActiveDrop(!activeDrop)}
         >
           <motion.span
@@ -67,7 +67,7 @@ export default function DropDownMobile({
                     className={clsx(
                       "block mb-1 pl-10 py-1 text-xl capitalize "
                     )}
-                    href={`/product/${cate.link}`}
+                    href={`/san-pham/${cate.link}`}
                     key={cate.id}
                     onClick={() => {
                       setActiveMenu(false);

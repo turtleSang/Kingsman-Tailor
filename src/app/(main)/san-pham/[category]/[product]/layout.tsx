@@ -2,7 +2,7 @@ import { ProductDetailProps } from "@/components/product/product-detail";
 import axios from "axios";
 import { Metadata } from "next";
 
-export async function generateMetaData({
+export async function generateMetadata({
   params,
 }: {
   params: Promise<{ product: string }>;
@@ -12,8 +12,8 @@ export async function generateMetaData({
   const res = await axios.get(url, { params: { product } });
   const productProps = res.data as ProductDetailProps;
 
-  const metadata: Metadata = {
-    title: `${productProps.name} | Cửa hàng của tôi`,
+  return {
+    title: `${productProps.name}`,
     description: productProps.description,
     openGraph: {
       title: productProps.name,
@@ -34,9 +34,6 @@ export async function generateMetaData({
       images: [`/${productProps.thumbnail}`],
     },
   };
-  console.log(metadata);
-
-  return metadata;
 }
 
 export default function LayoutProduct({

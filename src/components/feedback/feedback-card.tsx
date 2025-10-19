@@ -24,12 +24,17 @@ export default function FeedBackCard({
           src={`/${image}`}
         />
       </div>
-      <div className="px-5 pb-5 ">
-        <h3 className={clsx("text-3xl text-primary-dark", LogoFont.className)}>
+      <div className="px-16 pb-5 mt-3 ">
+        <h3
+          className={clsx(
+            "text-xl md:text-3xl text-primary-dark",
+            LogoFont.className
+          )}
+        >
           Khách hàng {customerName}
         </h3>
-        <p className="text-4xl">
-          <span className="text-base lg:text-xl">
+        <p className="">
+          <span className="text-xs md:text-xl">
             " {truncateWords(feedback, 30)} "
           </span>
         </p>

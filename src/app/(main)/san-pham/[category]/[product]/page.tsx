@@ -2,7 +2,6 @@ import ProductDetail, {
   ProductDetailProps,
 } from "@/components/product/product-detail";
 import axios from "axios";
-import { Metadata } from "next";
 
 export default async function PageProductDetail({
   params,

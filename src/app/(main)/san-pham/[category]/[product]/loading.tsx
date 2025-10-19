@@ -4,13 +4,13 @@ import { motion } from "framer-motion";
 
 export default function ProductDetailSkeleton() {
   return (
-    <div className="flex flex-col md:flex-row gap-8 p-6 animate-pulse">
+    <div className="grid grid-cols-1 md:grid-cols-2 md:flex-row gap-8 p-6 animate-pulse max-w-full">
       {/* Hình ảnh chính */}
-      <div className="flex-1">
-        <div className="w-full aspect-[3/4] bg-gray-800 rounded-2xl"></div>
+      <div className="relative">
+        <div className="w-full aspect-square bg-gray-800 rounded-2xl"></div>
 
         {/* thumbnail phía dưới */}
-        <div className="flex gap-3 mt-4">
+        <div className="grid grid-cols-4 gap-3 mt-4">
           {[...Array(4)].map((_, i) => (
             <div key={i} className="w-20 h-20 bg-gray-800 rounded-lg"></div>
           ))}
@@ -18,7 +18,7 @@ export default function ProductDetailSkeleton() {
       </div>
 
       {/* Nội dung bên phải */}
-      <div className="flex-1 flex flex-col justify-between">
+      <div className="flex flex-col justify-between">
         <div>
           {/* Tiêu đề */}
           <div className="h-10 w-2/3 bg-gray-700 rounded-md mb-4"></div>

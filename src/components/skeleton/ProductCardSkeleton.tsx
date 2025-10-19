@@ -2,7 +2,7 @@
 
 export default function ProductCardSkeleton() {
   return (
-    <div className="group block relative rounded-sm overflow-hidden">
+    <div className="group block relative max-w-[100vw] rounded-sm overflow-hidden">
       {/* Ảnh */}
       <div className="relative aspect-square bg-neutral-300/20 animate-pulse" />
 
