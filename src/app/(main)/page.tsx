@@ -6,6 +6,7 @@ import ProductNewMainPage from "@/layout/product-new-main-page";
 import CategoryListMainPage from "@/layout/category-list-main-page";
 import Loading from "@/components/loading";
 import FeedBackListMainPage from "@/layout/feedback-list-main-page";
+import IntroMainPage from "@/layout/intro-main-page";
 
 export const metadata: Metadata = {
   title: "Kingsman - Âu Phục May Đo Cao Cấp",
@@ -34,6 +35,7 @@ export default function Home() {
     <div className="">
       <Slider />
       <CategoryListMainPage />
+      <IntroMainPage />
       <ProductNewMainPage />
       <FeedBackListMainPage />
     </div>

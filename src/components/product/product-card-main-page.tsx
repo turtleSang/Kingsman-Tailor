@@ -38,8 +38,11 @@ export default function ProductCardMainPage({
             </span>{" "}
             <sup className="text-xs">VNĐ</sup>
           </h4>
-          <p className="text-justify text-nowrap">
+          <p className="text-justify text-nowrap md:hidden">
             {truncateWords(description, 5)}
+          </p>
+          <p className="text-justify text-nowrap hidden md:block">
+            {truncateWords(description, 10)}
           </p>
         </div>
       </Link>

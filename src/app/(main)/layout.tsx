@@ -10,7 +10,6 @@ export default function LayoutMainPage({
   return (
     <div>
       <NavBarMain />
-
       {children}
       <Footer />
     </div>

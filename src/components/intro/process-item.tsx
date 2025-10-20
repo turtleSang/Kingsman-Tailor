@@ -56,7 +56,6 @@ export default function ProcessItem({
             whileInView="visible"
             custom={0}
           />
-          <motion.line />
         </motion.svg>
         <div className="aspect-video w-11/12 absolute top-1/2 left-1/2 -translate-1/2 ">
           <Image src={`/${image}`} alt={title} fill />
