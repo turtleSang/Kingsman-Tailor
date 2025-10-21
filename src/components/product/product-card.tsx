@@ -36,8 +36,11 @@ export default function ProductCard({
         <h4 className="text-primary text-right text-xs">
           {formatCurrency(price)} <sup className="text-xs">VNĐ</sup>
         </h4>
-        <p className="text-justify text-nowrap">
-          {truncateWords(description, 4)}
+        <p className="text-justify text-nowrap md:hidden">
+          {truncateWords(description, 5)}
+        </p>
+        <p className="text-justify text-nowrap hidden md:block">
+          {truncateWords(description, 10)}
         </p>
       </div>
     </Link>

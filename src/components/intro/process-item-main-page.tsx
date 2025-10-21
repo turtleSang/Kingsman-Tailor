@@ -49,13 +49,18 @@ export default function ProcessIntro() {
             custom={0}
           />
         </motion.svg>
-        <div className="aspect-video w-11/12 absolute top-1/2 left-1/2 -translate-1/2 ">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ delay: 1 }}
+          className="aspect-video w-11/12 absolute top-1/2 left-1/2 -translate-1/2 "
+        >
           <Image
             src={`/intro/intro-page-1.jpg`}
             alt={"Cửa hàng Kingsman"}
             fill
           />
-        </div>
+        </motion.div>
       </div>
       <div>
         <motion.svg
@@ -98,13 +103,18 @@ export default function ProcessIntro() {
             custom={3}
           />
         </motion.svg>
-        <div className="aspect-video w-11/12 absolute top-1/2 left-1/2 -translate-1/2 ">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ delay: 1 }}
+          className="aspect-video w-11/12 absolute top-1/2 left-1/2 -translate-1/2 "
+        >
           <Image
             src={`/intro/intro-page-2.jpg`}
             alt={"Đội ngũ Kingsman"}
             fill
           />
-        </div>
+        </motion.div>
       </div>
       <div>
         <h2
