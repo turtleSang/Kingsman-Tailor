@@ -18,7 +18,7 @@ const contentIntroPage: {
     image: "intro/intro-2.jpg",
   },
   {
-    title: "Không chỉ chú trọng đến chất lượng vải và kỹ thuật cắt ma",
+    title: "Không chỉ chú trọng đến chất lượng vải và kỹ thuật cắt may",
     description:
       "Kingsman Tailor còn quan tâm đến trải nghiệm cá nhân hóa của từng khách hàng. Tại đây, mỗi quý ông đều được tư vấn riêng biệt về phom dáng, màu sắc và phong cách, giúp tôn lên vẻ lịch lãm và sự tự tin trong mọi hoàn cảnh – từ công sở đến sự kiện đặc biệt",
     image: "intro/intro-3.jpg",

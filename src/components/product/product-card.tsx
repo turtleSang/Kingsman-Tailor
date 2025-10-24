@@ -27,7 +27,12 @@ export default function ProductCard({
       href={`/san-pham/${category.link}/${link}`}
     >
       <div className="relative aspect-square">
-        <Image src={`/${thumbnail}`} fill alt={name} />
+        <Image
+          src={`/${thumbnail}`}
+          fill
+          alt={name}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        />
       </div>
       <div className="bg-secondary/75 lg:absolute lg:w-full lg:bottom-0 lg:left-0 p-2 lg:translate-y-2/3 group-hover:translate-y-0 duration-200">
         <h3 className="capitalize text-base text-nowrap">

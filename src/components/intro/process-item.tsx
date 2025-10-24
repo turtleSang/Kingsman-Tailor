@@ -58,7 +58,12 @@ export default function ProcessItem({
           />
         </motion.svg>
         <div className="aspect-video w-11/12 absolute top-1/2 left-1/2 -translate-1/2 ">
-          <Image src={`/${image}`} alt={title} fill />
+          <Image
+            src={`/${image}`}
+            alt={title}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
         </div>
       </div>
       <div className="p-3">

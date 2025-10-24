@@ -20,7 +20,13 @@ export default function CategoryCard({
       href={`/san-pham/${link}`}
     >
       <div className="relative aspect-video">
-        <Image src={`/${urlImg}`} alt={`Danh mục sản phẩm ${name}`} fill />
+        <Image
+          src={`/${urlImg}`}
+          alt={`Danh mục sản phẩm ${name}`}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          priority
+        />
       </div>
       <h3 className="text-xl text-center uppercase text-primary py-2">
         {name}

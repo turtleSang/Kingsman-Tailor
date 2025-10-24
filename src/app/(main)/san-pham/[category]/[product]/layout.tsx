@@ -9,7 +9,16 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { product } = await params;
   const url = `${process.env.NEXT_PUBLIC_API_URL}/product/detail/`;
+
   const res = await axios.get(url, { params: { product } });
+
+  if (!res.data) {
+    return {
+      title: "Sản phẩm không tồn tại - Kingsman Tailor",
+      description: "Sản phẩm bạn đang tìm kiếm không tồn tại.",
+    };
+  }
+
   const productProps = res.data as ProductDetailProps;
 
   return {

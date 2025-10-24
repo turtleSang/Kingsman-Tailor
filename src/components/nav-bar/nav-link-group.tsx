@@ -21,6 +21,7 @@ const MainPageLink: PageLink[] = [
   { link: "/san-pham", name: "sản phẩm", type: "dropdown" },
   { link: "/feedback", name: "Khách hàng", type: "normal" },
   { link: "/lien-he", name: "Liên hệ", type: "normal" },
+  { link: "/tin-tuc", name: "Tin Tức", type: "normal" },
 ];
 export default function NavLinkGroup() {
   const pathName = usePathname();
@@ -32,13 +33,13 @@ export default function NavLinkGroup() {
     if (listPath[1]) {
       setTab(`/${listPath[1]}`);
     } else {
-      setTab("");
+      setTab("/");
     }
   }, [pathName]);
 
   return (
     <>
-      <div className="hidden md:grid grid-cols-5 gap-3">
+      <div className="hidden md:grid grid-cols-6 gap-3">
         {MainPageLink.map((item) => {
           if (item.type === "normal") {
             return (

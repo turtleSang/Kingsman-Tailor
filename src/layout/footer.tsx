@@ -1,5 +1,6 @@
 "use client";
 
+import { faZalo } from "@/components/customizing/faZalo";
 import Logo from "@/components/nav-bar/logo";
 import { faFacebook, faInstagram } from "@fortawesome/free-brands-svg-icons";
 import {
@@ -52,16 +53,18 @@ export default function Footer() {
           </h3>
           <div className="flex gap-4">
             <Link
-              href="#"
+              href="https://www.facebook.com/Hentoribespoke.suitmaydo.thudaumot"
+              target="_blank"
               className="w-10 h-10 text-center leading-10 inline-block rounded-full bg-neutral-800 hover:bg-neutral-700 transition"
             >
               <FontAwesomeIcon icon={faFacebook} />
             </Link>
             <Link
-              href="#"
+              href="https://zalo.me/0388858682"
+              target="_blank"
               className="w-10 h-10 text-center leading-10 inline-block rounded-full bg-neutral-800 hover:bg-neutral-700 transition"
             >
-              <FontAwesomeIcon icon={faInstagram} />
+              <FontAwesomeIcon icon={faZalo} />
             </Link>
           </div>
         </div>

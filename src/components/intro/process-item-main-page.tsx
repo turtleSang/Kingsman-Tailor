@@ -59,6 +59,8 @@ export default function ProcessIntro() {
             src={`/intro/intro-page-1.jpg`}
             alt={"Cửa hàng Kingsman"}
             fill
+            loading="lazy"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         </motion.div>
       </div>
@@ -113,6 +115,8 @@ export default function ProcessIntro() {
             src={`/intro/intro-page-2.jpg`}
             alt={"Đội ngũ Kingsman"}
             fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            loading="lazy"
           />
         </motion.div>
       </div>

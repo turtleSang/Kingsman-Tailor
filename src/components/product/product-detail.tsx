@@ -6,6 +6,8 @@ import { faPhone } from "@fortawesome/free-solid-svg-icons";
 import SilderProductImage from "./slider-product-image";
 import clsx from "clsx";
 import { LogoFont } from "@/app/layout";
+import { faZalo } from "../customizing/faZalo";
+import ListProduct from "./list-product";
 
 export interface ProductDetailProps {
   name: string;
@@ -13,6 +15,7 @@ export interface ProductDetailProps {
   price: number;
   thumbnail: string;
   imagesUrl: { url: string }[];
+  category?: { link: string; id: number; name: string };
 }
 
 export default function ProductDetail({
@@ -21,6 +24,7 @@ export default function ProductDetail({
   name,
   price,
   thumbnail,
+  category,
 }: ProductDetailProps) {
   let listImage = [thumbnail];
   imagesUrl.forEach((item) => {
@@ -28,42 +32,58 @@ export default function ProductDetail({
   });
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2">
-      <div className=" relative p-3">
-        <SilderProductImage images={listImage} name={`Sản phẩm ${name}`} />
-      </div>
-      <div className=" grid grid-cols-1 p-3">
-        <h3
-          className={clsx(
-            LogoFont.className,
-            "text-3xl md:text-5xl text-primary uppercase "
-          )}
-        >
-          {name}
-        </h3>
-        <h3 className="text-primary-dark mt-3 text-xl md:text-3xl lg:text-5xl text-right">
-          {formatCurrency(price)} <sup>VNĐ</sup>
-        </h3>
-        <p className="mt-3">{description}</p>
-        <div className="text-center mt-3">
-          <a
-            className="inline-block text-justify button-normal w-7/12"
-            href="tel:0388858682"
+    <>
+      <div className="grid grid-cols-1 md:grid-cols-2">
+        <div className=" relative p-3">
+          <SilderProductImage images={listImage} name={`Sản phẩm ${name}`} />
+        </div>
+        <div className=" grid grid-cols-1 p-3">
+          <h3
+            className={clsx(
+              LogoFont.className,
+              "text-3xl md:text-5xl text-primary uppercase "
+            )}
           >
-            Đặt lịch ngay
-            <FontAwesomeIcon className="ml-3" icon={faPhone} />
-          </a>
-          <br />
-          <a
-            className="inline-block text-justify button-outline mt-3 w-7/12"
-            href="https://www.facebook.com/Hentoribespoke.suitmaydo.thudaumot"
-            target="_blank"
-          >
-            Facebook
-            <FontAwesomeIcon className="ml-3" icon={faFacebook} />
-          </a>
+            {name}
+          </h3>
+          <h3 className="text-primary-dark mt-3 text-xl md:text-3xl lg:text-5xl text-right">
+            {formatCurrency(price)} <sup>VNĐ</sup>
+          </h3>
+          <p className="mt-3">{description}</p>
+          <div className="text-center mt-3">
+            <a
+              className="inline-block text-justify button-normal w-7/12"
+              href="tel:0388858682"
+            >
+              <FontAwesomeIcon className="mr-3" icon={faPhone} />
+              Đặt lịch ngay
+            </a>
+            <br />
+            <a
+              className="inline-block text-justify button-outline mt-3 w-7/12"
+              href="https://www.facebook.com/Hentoribespoke.suitmaydo.thudaumot"
+              target="_blank"
+            >
+              <FontAwesomeIcon className="mr-3" icon={faFacebook} />
+              Facebook
+            </a>
+            <a
+              className="inline-block text-justify button-outline mt-3 w-7/12"
+              href="https://zalo.me/0388858682"
+              target="_blank"
+            >
+              <FontAwesomeIcon className="mr-3" icon={faZalo} />
+              Zalo
+            </a>
+          </div>
         </div>
       </div>
-    </div>
+      <div className="mt-10">
+        <h2 className={(LogoFont.className, "text-3xl mb-10")}>
+          Sản phẩm cùng bộ sưu tập
+        </h2>
+        <ListProduct urlLink={category?.link} />
+      </div>
+    </>
   );
 }
