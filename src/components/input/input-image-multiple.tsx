@@ -1,5 +1,6 @@
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import clsx from "clsx";
 import Image from "next/image";
 import { log } from "node:console";
 import { useEffect, useState } from "react";
@@ -8,12 +9,14 @@ import { useDropzone } from "react-dropzone";
 interface InputImageMultipleProps {
   labelName: string;
   listOldImage?: string[];
+  isSquare?: boolean;
   handleMultipleFile: (listFile: File[]) => void;
 }
 
 export default function InputImageMultiple({
   labelName,
   listOldImage = [],
+  isSquare = false,
   handleMultipleFile,
 }: InputImageMultipleProps) {
   const { acceptedFiles, isDragActive, getInputProps, getRootProps } =
@@ -49,7 +52,13 @@ export default function InputImageMultiple({
           <div className="grid grid-cols-4 gap-3 border-2 rounded-lg p-3 border-border">
             {listPreviewImage.map((item, index) => {
               return (
-                <div className="relative aspect-video" key={index}>
+                <div
+                  className={clsx(
+                    "relative",
+                    isSquare ? "aspect-square" : "aspect-video"
+                  )}
+                  key={index}
+                >
                   <Image src={item} alt="Image of product" fill />
                 </div>
               );

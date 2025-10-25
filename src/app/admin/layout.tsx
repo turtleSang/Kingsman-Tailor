@@ -25,8 +25,8 @@ export default async function AdminLayout({
     <div>
       <Link href={"/admin"}>
         <h1 className="text-center uppercase lg:mt-5 flex flex-row justify-center items-center mt-3">
-          <Image alt="Logo" src={"/logo.png"} height={70} width={70} />
-          <span className={LogoFont.className}>ingsman Manager</span>
+          {/* <Image alt="Logo" src={"/logo.png"} height={70} width={70} /> */}
+          <span className={LogoFont.className}>Kingsman Manager</span>
         </h1>
       </Link>
       <div className="w-10/12 mx-auto">{children}</div>

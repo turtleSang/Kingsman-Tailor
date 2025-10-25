@@ -9,7 +9,10 @@ export const NametoLink = (name: string) => {
         .replace(/[\u0300-\u036f]/g, '')      // Xóa các dấu thanh
         .replace(/đ/g, 'd')                   // Thay đ -> d
         .replace(/Đ/g, 'd')                   // Thay Đ -> d
-        .replace(/\s+/g, '-')                 // Thay khoảng trắng bằng dấu -
+        .replace(/\s+/g, '-')                 // Thay khoảng trắng bằng dấu -  
+        .replace(/[^a-zA-Z0-9-]/g, '')        // ❗ Xóa ký tự đặc biệt
+        .replace(/-+/g, '-')                  // Gộp nhiều dấu - liên tiếp thành 1
+        .replace(/^-|-$/g, '')                // Xóa dấu - ở đầu hoặc cuối (nếu có)     
         .toLowerCase();                       // Chuyển về chữ thườ
 }
 

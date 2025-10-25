@@ -165,10 +165,12 @@ export default function FormCreateProduct() {
         />
       )}
       <InputImageSingle
+        isSquare={true}
         labelName="Upload hình đại diện sản phẩm"
         handleFile={handleThumnail}
       />
       <InputImageMultiple
+        isSquare={true}
         labelName="Upload hình ảnh của sản phẩm"
         handleMultipleFile={handleListImage}
       />

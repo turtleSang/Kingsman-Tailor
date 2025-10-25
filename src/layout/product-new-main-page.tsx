@@ -1,18 +1,21 @@
 import { LogoFont } from "@/app/layout";
 import NotFound from "@/components/not-found";
-import ProductCard, {
-  ProductCardProps,
-} from "@/components/product/product-card";
+import { ProductCardProps } from "@/components/product/product-card";
 import ProductCardMainPage from "@/components/product/product-card-main-page";
-import axios from "axios";
 import clsx from "clsx";
 import Link from "next/link";
+import { prisma } from "../../libs/prisma";
+import { pageSize } from "../../libs/constance";
 
 export default async function ProductNewMainPage() {
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/product`;
   try {
-    const res = await axios.get(url, { params: { page: 1 } });
-    const listProductNew = res.data.listProduct as ProductCardProps[];
+    const list = await prisma.product.findMany({
+      skip: 0,
+      take: pageSize,
+      orderBy: { updatedAt: "desc" },
+      include: { category: true },
+    });
+    const listProductNew = list as ProductCardProps[];
 
     return (
       <div className="mt-10">

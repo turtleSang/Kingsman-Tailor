@@ -115,7 +115,6 @@ export async function DELETE(req: Request) {
         const pathImage = path.join(process.cwd(), "public", banner.imageUrl)
         if (await CheckFileExist(pathImage)) {
             await RemoveFile(pathImage)
-            console.log('remove', pathImage)
         }
         return NextResponse.json({ message: `Đã xóa banner ${banner.id}` })
     } catch (error) {

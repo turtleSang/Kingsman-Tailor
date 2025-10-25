@@ -2,7 +2,11 @@ import CardText from "@/components/CardText";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { faComment, faImage } from "@fortawesome/free-regular-svg-icons";
-import { faList, faShirt } from "@fortawesome/free-solid-svg-icons";
+import {
+  faList,
+  faNewspaper,
+  faShirt,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 
@@ -35,6 +39,12 @@ export const ListAdminMananger: {
     icon: faShirt,
     link: "/admin/product",
     description: "Thêm xóa sửa sản phẩm",
+  },
+  {
+    title: "Bài viết",
+    icon: faNewspaper,
+    link: "/admin/post",
+    description: "Quản lý bài viết trên trang",
   },
 ];
 

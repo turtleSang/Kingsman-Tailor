@@ -47,7 +47,7 @@ export default function PageProductAdmin() {
 
   return (
     <div className="my-5 grid grid-cols-1 gap-3">
-      {listProduct.length === 0 && (
+      {listProduct.length === 0 && !isLoading && (
         <NotFound
           title="404 Not found"
           description="Không có sản phẩm nào để hiển thị"
@@ -60,7 +60,7 @@ export default function PageProductAdmin() {
             className="flex flex-row justify-start items-center  bg-secondary p-3 rounded-lg"
             key={item.id}
           >
-            <div className="aspect-video relative w-1/3">
+            <div className="aspect-square relative w-1/3">
               <Image
                 src={`/${item.thumbnail}`}
                 fill={true}

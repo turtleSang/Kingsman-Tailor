@@ -128,6 +128,12 @@ export async function DELETE(req: Request) {
     }
     try {
         const feedbackDeleted = await prisma.feedBack.delete({ where: { id } });
+        if (feedbackDeleted.image) {
+            const pathOldImage = path.join(process.cwd(), 'public', feedbackDeleted.image);
+            if (await CheckFileExist(pathOldImage)) {
+                await RemoveFile(pathOldImage)
+            }
+        }
         return NextResponse.json({ message: `Đã xóa thành công feed back của khách hàng ${feedbackDeleted.customerName}` }, { status: 200 })
     } catch (error) {
         return NextResponse.json({ message: `Lỗi hệ thống` }, { status: 500 })

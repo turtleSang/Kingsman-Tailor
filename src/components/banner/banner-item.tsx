@@ -22,6 +22,7 @@ export default function BannerItem({
           src={`/${imageUrl}`}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          priority
         />
         <div className="absolute top-0 left-0 z-10 bg-black w-full h-full opacity-20"></div>
         <div className="absolute bottom-0 lg:bottom-50 left-3  z-40 bg-black/50 hover:bg-primary/50 p-3 rounded-md duration-200">

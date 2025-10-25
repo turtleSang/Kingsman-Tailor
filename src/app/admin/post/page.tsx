@@ -1,52 +1,47 @@
 "use client";
-
-import axios from "axios";
-import { useEffect, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
-import LargeCardSkeleton from "@/components/skeleton/LargeCardSkeleton";
 import NotFound from "@/components/not-found";
+import LargeCardSkeleton from "@/components/skeleton/LargeCardSkeleton";
+import { Post } from "@/generated/prisma";
+import axios from "axios";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
-interface Feedback {
-  id: number;
-  image: string;
-  customerName: string;
-  feedback: string;
-}
-
-export default function PageFeedbackAdmin() {
-  const [listFeedBack, setListFeedBack] = useState<Feedback[]>([]);
+export default function AdminPostPage() {
+  const [listPost, setListPost] = useState<Post[]>([]);
   const [canShowMore, setCanShowMore] = useState<boolean>(false);
   const [page, setPage] = useState<number>(1);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const getListFeedBack = async (page: number) => {
+  const getListPost = async (page: number) => {
+    const url = `${process.env.NEXT_PUBLIC_API_URL}/post`;
     setIsLoading(true);
-    const url = `${process.env.NEXT_PUBLIC_API_URL}/feedback`;
-    const res = await axios.get(url, { params: { page } });
-    const data = res.data as { listFeedback: Feedback[]; hasMore: boolean };
-
-    if (page === 1) {
-      setListFeedBack(data.listFeedback);
-    } else {
-      setListFeedBack((val) => {
-        return [...val, ...data.listFeedback];
-      });
+    try {
+      const res = await axios.get(url, { params: { page } });
+      const data = res.data as { listPost: Post[]; hasMore: boolean };
+      if (page === 1) {
+        setListPost(data.listPost);
+      } else {
+        setListPost((val) => {
+          return [...val, ...data.listPost];
+        });
+      }
+      setCanShowMore(data.hasMore);
+      setIsLoading(false);
+    } catch (error) {
+      setIsLoading(false);
+      return;
     }
-    setCanShowMore(data.hasMore);
-    setIsLoading(false);
   };
-
   useEffect(() => {
-    getListFeedBack(page);
+    getListPost(page);
   }, []);
 
   return (
-    <div className="my-5 grid grid-cols-1 gap-3">
-      {!isLoading && listFeedBack.length === 0 && (
-        <NotFound title="404 feedback" />
-      )}
-      {listFeedBack.map((item) => {
+    <div>
+      {isLoading && <LargeCardSkeleton />}
+      {!isLoading && listPost.length === 0 && <NotFound title="404 post" />}
+      {listPost.map((item) => {
         return (
           <div
             className="flex flex-row justify-start items-center  bg-secondary p-3 rounded-lg"
@@ -54,9 +49,9 @@ export default function PageFeedbackAdmin() {
           >
             <div className="aspect-video relative w-1/3">
               <Image
-                src={`/${item.image}`}
+                src={`/${item.thumnail}`}
                 fill={true}
-                alt={item.customerName || ""}
+                alt={item.title || ""}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
             </div>
@@ -69,22 +64,22 @@ export default function PageFeedbackAdmin() {
               </div>
               <div className="flex flex-row">
                 <span className="text-white text-sm md:text-base w-4/12">
-                  Tên Khách hàng:
+                  Tiêu đề:
                 </span>
-                <p className="w-8/12">{item.customerName}</p>
+                <p className="w-8/12">{item.title}</p>
               </div>
               <div className="flex flex-row">
                 <span className="text-white text-sm md:text-base w-4/12">
-                  Feedback:
+                  Tóm tắt:
                 </span>
                 <p className="w-8/12 wrap-anywhere">
-                  {item.feedback || "Không có"}
+                  {item.excerpt || "Không có"}
                 </p>
               </div>
               <div className="text-center mt-2">
                 <Link
                   className="inline-block text-black border-2 p-2 bg-primary rounded-xl"
-                  href={`feedback/update/${item.id}`}
+                  href={`post/update/${item.link}`}
                 >
                   Chỉnh sửa
                 </Link>
@@ -93,7 +88,6 @@ export default function PageFeedbackAdmin() {
           </div>
         );
       })}
-      {isLoading && <LargeCardSkeleton />}
       {canShowMore && (
         <div className="mt-5 flex justify-center">
           <button
@@ -101,7 +95,7 @@ export default function PageFeedbackAdmin() {
             onClick={() => {
               const pageNumber = page + 1;
               setPage(pageNumber);
-              getListFeedBack(pageNumber);
+              getListPost(pageNumber);
             }}
           >
             Xem Thêm

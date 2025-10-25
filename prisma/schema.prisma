@@ -56,3 +56,14 @@ model FeedBack{
   customerName String
   feedback String @db.Text
 }
+
+model Post{
+  id Int @id @default(autoincrement())
+  title String @unique
+  link String @unique
+  content String @db.Text
+  excerpt String @db.Text
+  thumnail String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

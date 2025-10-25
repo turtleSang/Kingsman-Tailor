@@ -217,11 +217,13 @@ export default function FormUpdateProduct({
         />
       )}
       <InputImageSingle
+        isSquare={true}
         labelName="Upload hình đại diện sản phẩm"
         handleFile={handleThumnail}
         oldFile={thumbnailOld}
       />
       <InputImageMultiple
+        isSquare={true}
         labelName="Upload hình ảnh của sản phẩm"
         handleMultipleFile={handleListImage}
         listOldImage={imagesUrl}

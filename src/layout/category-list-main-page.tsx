@@ -6,13 +6,12 @@ import CategorySlider from "@/components/category/category-slider";
 import NotFound from "@/components/not-found";
 import axios from "axios";
 import clsx from "clsx";
+import { prisma } from "../../libs/prisma";
 
 export default async function CategoryListMainPage() {
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/category`;
-
   try {
-    const res = await axios.get(url);
-    const listCategory = res.data as CategoryCardProps[];
+    const list = await prisma.category.findMany();
+    const listCategory = list as CategoryCardProps[];
 
     return (
       <div className="mt-10">

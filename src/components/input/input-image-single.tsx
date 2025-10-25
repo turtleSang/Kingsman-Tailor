@@ -1,5 +1,6 @@
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import clsx from "clsx";
 import Image from "next/image";
 import { InputHTMLAttributes, useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
@@ -8,9 +9,11 @@ export default function InputImageSingle({
   labelName,
   oldFile,
   handleFile,
+  isSquare = false,
 }: {
   oldFile?: String;
   labelName: string;
+  isSquare?: boolean;
   handleFile: (file: File) => void;
 }) {
   const { acceptedFiles, isDragActive, getRootProps, getInputProps } =
@@ -60,7 +63,12 @@ export default function InputImageSingle({
       <span>{labelName}</span>
       <div className="grid grid-cols-2 items-center gap-3">
         {previewImageUrl && (
-          <div className="relative aspect-video rounded-md overflow-hidden">
+          <div
+            className={clsx(
+              "relative rounded-md overflow-hidden",
+              isSquare ? "aspect-square" : "aspect-video"
+            )}
+          >
             <Image
               className="z-0"
               src={previewImageUrl}
@@ -68,6 +76,14 @@ export default function InputImageSingle({
               alt="Upload Image"
             />
           </div>
+        )}
+        {!previewImageUrl && (
+          <div
+            className={clsx(
+              isSquare ? "aspect-square" : "aspect-video",
+              "bg-gray-500 rounded-md"
+            )}
+          ></div>
         )}
         <div
           className="mt-2  rounded-lg border-2 border-border cursor-pointer h-full flex items-center justify-center"

@@ -1,17 +1,15 @@
 import { LogoFont } from "@/app/layout";
-import FeedBackCard, {
-  FeedBackCardProps,
-} from "@/components/feedback/feedback-card";
+import { FeedBackCardProps } from "@/components/feedback/feedback-card";
 import FeedbackSlider from "@/components/feedback/feedback-slider";
 import NotFound from "@/components/not-found";
-import axios from "axios";
 import clsx from "clsx";
+import { prisma } from "../../libs/prisma";
+import { pageSize } from "../../libs/constance";
 
 export default async function FeedBackListMainPage() {
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/feedback`;
   try {
-    const res = await axios.get(url, { params: { page: 1 } });
-    const listFeedback = res.data.listFeedback as FeedBackCardProps[];
+    const list = await prisma.feedBack.findMany({ skip: 0, take: pageSize });
+    const listFeedback = list as FeedBackCardProps[];
     return (
       <div className="mt-10">
         <h2
