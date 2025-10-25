@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import DropdownNav from "./dropdown-nav";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
 import DropDownMobile from "./dropdown-mobile-nav";
 
 export interface PageLink {
@@ -75,9 +75,32 @@ export default function NavLinkGroup() {
           className="absolute z-50 top-5"
           onClick={() => setActiveMenu(!activeMenu)}
         >
-          <span className="text-2xl text-primary hover:text-primary-dark">
-            <FontAwesomeIcon icon={faBars} />
-          </span>
+          <AnimatePresence>
+            {activeMenu && (
+              <motion.span
+                initial={{ opacity: 0, scale: 0.2 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.2 }}
+                transition={{ duration: 0.3 }}
+                className="text-2xl absolute text-primary hover:text-primary-dark"
+                key={2}
+              >
+                <FontAwesomeIcon icon={faClose} />
+              </motion.span>
+            )}
+            {!activeMenu && (
+              <motion.span
+                initial={{ opacity: 0, scale: 0.2 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.2 }}
+                transition={{ duration: 0.3 }}
+                className="text-2xl absolute text-primary hover:text-primary-dark"
+                key={1}
+              >
+                <FontAwesomeIcon icon={faBars} />
+              </motion.span>
+            )}
+          </AnimatePresence>
         </button>
         <AnimatePresence>
           {activeMenu && (

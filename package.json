@@ -6,6 +6,7 @@
     "dev": "next dev --turbopack",
     "share": "env-cmd -f .env.share next dev --turbopack",
     "build": "next build --turbopack",
+    "build:share": "env-cmd -f .env.share next build --turbopack",
     "start": "next start"
   },
   "dependencies": {

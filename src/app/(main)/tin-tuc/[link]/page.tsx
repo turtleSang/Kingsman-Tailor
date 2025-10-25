@@ -2,6 +2,29 @@ import NotFound from "@/components/not-found";
 import { prisma } from "../../../../../libs/prisma";
 import Image from "next/image";
 import { LogoFont } from "@/app/layout";
+import { Metadata } from "next";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ link: string }>;
+}): Promise<Metadata> {
+  const { link } = await params;
+  const post = await prisma.post.findUniqueOrThrow({
+    where: { link },
+  });
+  return {
+    title: `${post.title} | Kingsman tailor`,
+    description: post.excerpt,
+    openGraph: {
+      title: `${post.title} | Kingsman tailor`,
+      description: post.excerpt,
+      type: "website",
+      locale: "vi-VN",
+      images: [{ url: `/${post.thumnail}`, width: 1280, height: 720 }],
+    },
+  };
+}
 
 export default async function PostPage({
   params,
