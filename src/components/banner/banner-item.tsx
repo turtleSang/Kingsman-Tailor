@@ -25,7 +25,7 @@ export default function BannerItem({
           priority
         />
         <div className="absolute top-0 left-0 z-10 bg-black w-full h-full opacity-20"></div>
-        <div className="absolute bottom-0 lg:bottom-50 left-3  z-40 bg-black/50 hover:bg-primary/50 p-3 rounded-md duration-200">
+        <div className="absolute bottom-5 lg:bottom-50 left-3  z-40 bg-black/50 hover:bg-primary/50 p-3 rounded-md duration-200">
           <Link
             href={link}
             className=" text-sm text-white text-justify md:text-base lg:text-xl"

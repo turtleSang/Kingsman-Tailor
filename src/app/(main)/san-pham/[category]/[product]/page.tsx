@@ -3,6 +3,7 @@ import ProductDetail, {
   ProductDetailProps,
 } from "@/components/product/product-detail";
 import axios from "axios";
+import { prisma } from "../../../../../../libs/prisma";
 
 export default async function PageProductDetail({
   params,
@@ -10,11 +11,13 @@ export default async function PageProductDetail({
   params: Promise<{ product: string }>;
 }) {
   const { product } = await params;
-  const url = `api/product/detail/`;
 
   try {
-    const res = await axios.get(url, { params: { product } });
-    const productProps = res.data as ProductDetailProps;
+    const res = await prisma.product.findUnique({
+      where: { link: product },
+      include: { category: true, imagesUrl: true },
+    });
+    const productProps = res as ProductDetailProps;
     return (
       <div>
         <ProductDetail
