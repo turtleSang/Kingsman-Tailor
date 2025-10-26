@@ -1,4 +1,5 @@
 import CardText from "@/components/CardText";
+import NotFound from "@/components/not-found";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
@@ -15,6 +16,9 @@ export default async function PageCategoryAdmin() {
 
   return (
     <div className="grid grid-cols-1 gap-3">
+      {listCategory.length === 0 && (
+        <NotFound title="404 category" description="Không tìm thấy danh mục" />
+      )}
       {listCategory.map((item) => {
         return (
           <div

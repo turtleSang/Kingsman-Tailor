@@ -20,7 +20,7 @@ export default function NotFound({
   action,
 }: NotFoundProps) {
   return (
-    <section className="flex flex-col items-center justify-center text-center py-20 px-6 bg-[--color-charcoal] rounded-2xl border border-[--color-border]">
+    <section className="flex flex-col items-center justify-center text-center py-20 px-6 bg-[--color-charcoal] rounded-md border border-border">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

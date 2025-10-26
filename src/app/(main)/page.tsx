@@ -7,6 +7,7 @@ import CategoryListMainPage from "@/layout/category-list-main-page";
 import Loading from "@/components/loading";
 import FeedBackListMainPage from "@/layout/feedback-list-main-page";
 import IntroMainPage from "@/layout/intro-main-page";
+import PostListMainPage from "@/layout/post-list-main-page";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://kingsman-tailor.vn"),
@@ -39,6 +40,7 @@ export default function Home() {
       <IntroMainPage />
       <ProductNewMainPage />
       <FeedBackListMainPage />
+      <PostListMainPage />
     </div>
   );
 }

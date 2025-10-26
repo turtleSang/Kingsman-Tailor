@@ -45,21 +45,6 @@ export default function Logo() {
       <motion.span
         initial={{
           opacity: 0,
-          translateX: 20,
-        }}
-        animate={{ opacity: 1, translateX: 0 }}
-        transition={{ duration: 0.5, delay: 0.5 }}
-        className={clsx(
-          "ml-2 uppercase text-primary hidden lg:inline-block md:text-2xl lg:text-3xl",
-          LogoFont.className
-        )}
-      >
-        -
-      </motion.span>
-
-      <motion.span
-        initial={{
-          opacity: 0,
           translateX: -20,
         }}
         animate={{ opacity: 1, translateX: 0 }}

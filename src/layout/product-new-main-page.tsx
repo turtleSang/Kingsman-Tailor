@@ -56,7 +56,7 @@ export default async function ProductNewMainPage() {
               );
             })}
         </div>
-        <div className="flex justify-center mt-3">
+        <div className="flex justify-center mt-5">
           <Link href={`/san-pham`} className="button-outline">
             Xem Thêm Sản Phẩm
           </Link>

@@ -27,6 +27,12 @@ export default async function FeedBackListMainPage() {
           dụng cũng như phong cách cá nhân của bạn.
         </p>
         <div className="w-3/4 mx-auto">
+          {listFeedback.length === 0 && (
+            <NotFound
+              title="404 Feedback"
+              description="Không tìm thấy đánh giá nào"
+            />
+          )}
           {listFeedback && listFeedback.length > 0 && (
             <FeedbackSlider listFeedback={listFeedback} />
           )}

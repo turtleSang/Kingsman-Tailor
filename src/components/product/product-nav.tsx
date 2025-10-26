@@ -25,7 +25,9 @@ export default function ProductNav() {
 
   return (
     <div className="relative">
-      {error && <NotFound />}
+      {(error || !categories || categories.length === 0) && !isLoading && (
+        <NotFound title="404 Danh mục" description="Không tìm thấy danh mục" />
+      )}
       {isLoading && <CategoryButoonSkeleton />}
       {categories && categories.length > 0 && (
         <div className="grid grid-cols-3 lg:grid-cols-1 gap-3">

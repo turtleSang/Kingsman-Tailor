@@ -55,7 +55,9 @@ export default function DropdownNav({ activeTab }: { activeTab: string }) {
             exit={{ opacity: 0, translateY: 10 }}
             className="absolute top-[130%] left-1/2 w-44 min-h-52 bg-secondary -z-20 -translate-x-1/2 rounded-md grid grid-cols-1 gap-3 p-3"
           >
-            {error && <NotFound />}
+            {(error || categories.length === 0) && !isLoading && (
+              <NotFound title="404" description="Không tìm thấy danh mục" />
+            )}
             {isLoading && <Loading />}
             {categories &&
               categories.length > 0 &&

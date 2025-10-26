@@ -49,7 +49,7 @@ export default function ListProduct({ urlLink }: { urlLink?: string }) {
     <>
       {listProduct.length === 0 && !isLoading && (
         <NotFound
-          title="404 Not found"
+          title="404 Sản phẩm"
           description="Không có sản phẩm nào để hiển thị"
         />
       )}

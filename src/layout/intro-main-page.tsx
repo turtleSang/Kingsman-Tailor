@@ -33,9 +33,9 @@ export default function IntroMainPage() {
           <div className="text-center">
             <Link
               href="/gioi-thieu"
-              className="inline-block mt-4 bg-yellow-500 text-black px-6 py-2 rounded-full font-medium hover:bg-yellow-600 transition"
+              className="inline-block mt-5 button-outline"
             >
-              Xem thêm
+              Tìm hiểu thêm về chúng tôi
             </Link>
           </div>
         </div>
