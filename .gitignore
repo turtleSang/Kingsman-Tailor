@@ -47,3 +47,6 @@ next-env.d.ts
 /public/product_image
 /public/feedback_image
 /public/post_image
+/public/robots.txt
+/public/sitemap-0.xml
+/public/sitemap.xml

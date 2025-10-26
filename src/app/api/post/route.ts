@@ -3,8 +3,13 @@ import { pageSize, postImage } from "../../../../libs/constance";
 import { CheckFileExist, NametoLink, RemoveFile, SaveFile } from "../../../../libs/helper";
 import { prisma } from "../../../../libs/prisma";
 import { NextResponse } from "next/server";
+import { getServerSession } from "next-auth";
 
 export async function POST(req: Request) {
+    const session = await getServerSession();
+    if (!session) {
+        return NextResponse.json({ message: "Không có quyền" }, { status: 403 });
+    }
     const formdata = await req.formData();
     const image = formdata.get("image") as File | null;
     const title = formdata.get("title") as string | null;
@@ -45,6 +50,10 @@ export async function POST(req: Request) {
 }
 
 export async function PUT(req: Request) {
+    const session = await getServerSession();
+    if (!session) {
+        return NextResponse.json({ message: "Không có quyền" }, { status: 403 });
+    }
     const formdata = await req.formData();
     const id = formdata.get("id") as string | null;
     const image = formdata.get("image") as File | null;
@@ -101,6 +110,10 @@ export async function PUT(req: Request) {
 }
 
 export async function DELETE(req: Request) {
+    const session = await getServerSession();
+    if (!session) {
+        return NextResponse.json({ message: "Không có quyền" }, { status: 403 });
+    }
     const url = new URL(req.url);
     const id = parseInt(url.searchParams.get('id')?.toString() || '0');
     if (!id) {
