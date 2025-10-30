@@ -6,6 +6,8 @@ import clsx from "clsx";
 import { prisma } from "../../libs/prisma";
 import { pageSize } from "../../libs/constance";
 
+export const revalidate = 60;
+
 export default async function FeedBackListMainPage() {
   try {
     const list = await prisma.feedBack.findMany({ skip: 0, take: pageSize });

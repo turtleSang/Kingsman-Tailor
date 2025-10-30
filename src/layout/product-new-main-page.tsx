@@ -7,6 +7,8 @@ import Link from "next/link";
 import { prisma } from "../../libs/prisma";
 import { pageSize } from "../../libs/constance";
 
+export const revalidate = 60;
+
 export default async function ProductNewMainPage() {
   try {
     const list = await prisma.product.findMany({

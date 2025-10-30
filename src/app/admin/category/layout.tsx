@@ -19,7 +19,7 @@ export default function LayoutCategory({
         }
         data={<FormCreateCategory />}
       />
-      {children}
+      <div className="mt-5">{children}</div>
     </div>
   );
 }

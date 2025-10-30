@@ -39,7 +39,7 @@ export async function POST(req: Request) {
     //Check Thumbnail
     if (thumbnailFile) {
         const fileName = `${NametoLink(name)}-thumbnail-${Date.now()}.${thumbnailFile.name.split('.').pop()}`;
-        thumbnail = `${productFolderImage}/${fileName}`;
+        thumbnail = `api/image/${productFolderImage}/${fileName}`;
         await SaveFile(thumbnailFile, productFolderImage, fileName)
     }
 
@@ -58,7 +58,7 @@ export async function POST(req: Request) {
         if (listImg.length > 0) {
             for (const img of listImg) {
                 const fileName = `${product.link}-${Date.now()}.${img.name.split('.').pop()}`;
-                const imgUrl = `${productFolderImage}/${fileName}`;
+                const imgUrl = `api/image/${productFolderImage}/${fileName}`;
                 await prisma.imageUrl.create({
                     data: {
                         url: imgUrl,
@@ -70,7 +70,6 @@ export async function POST(req: Request) {
         }
         return NextResponse.json({ message: `Tạo thành công sản phẩm ${product.name}` }, { status: 201 });
     } catch (error) {
-
         return NextResponse.json({ message: 'Lỗi hệ thống, vui lòng thử lại' }, { status: 500 });
     }
 }
@@ -108,17 +107,17 @@ export async function DELETE(req: Request) {
     try {
         //delete thumbnail
         if (product.thumbnail) {
-            const thumbnailPath = path.join(process.cwd(), "public", product.thumbnail);
-            if (await CheckFileExist(thumbnailPath)) {
-                await RemoveFile(thumbnailPath)
+
+            if (await CheckFileExist(product.thumbnail)) {
+                await RemoveFile(product.thumbnail)
             }
         }
         //delete Images
         if (product.imagesUrl.length > 0) {
             for (const img of product.imagesUrl) {
-                const imgPath = path.join(process.cwd(), "public", img.url);
-                if (await CheckFileExist(imgPath)) {
-                    await RemoveFile(imgPath);
+
+                if (await CheckFileExist(img.url)) {
+                    await RemoveFile(img.url);
                 }
             }
             await prisma.imageUrl.deleteMany({
@@ -189,13 +188,13 @@ export async function PUT(req: Request) {
 
     if (thumbnailFile) {
         if (productOld.thumbnail) {
-            const oldThumbnailPath = path.join(process.cwd(), "public", productOld.thumbnail);
-            if (await CheckFileExist(oldThumbnailPath)) {
-                await RemoveFile(oldThumbnailPath)
+
+            if (await CheckFileExist(productOld.thumbnail)) {
+                await RemoveFile(productOld.thumbnail)
             }
         }
         const fileName = `${NametoLink(name)}-thumbnail-${Date.now()}.${thumbnailFile.name.split('.').pop()}`;
-        thumbnail = `${productFolderImage}/${fileName}`
+        thumbnail = `api/image/${productFolderImage}/${fileName}`
         await SaveFile(thumbnailFile, productFolderImage, fileName)
     }
 
@@ -215,11 +214,9 @@ export async function PUT(req: Request) {
         //Delete Old Image
         if (productOld.imagesUrl.length > 0) {
             for (const image of productOld.imagesUrl) {
-                const filepath = path.join(process.cwd(), "public", image.url);
-                if (await CheckFileExist(filepath)) {
-                    await RemoveFile(filepath)
+                if (await CheckFileExist(image.url)) {
+                    await RemoveFile(image.url)
                 }
-
             }
             await prisma.imageUrl.deleteMany({
                 where: {
@@ -235,7 +232,7 @@ export async function PUT(req: Request) {
 
             await SaveFile(image, productFolderImage, fileName)
 
-            const url = `${productFolderImage}/${fileName}`;
+            const url = `api/image/${productFolderImage}/${fileName}`;
             await prisma.imageUrl.create({
                 data: {
                     url: url,

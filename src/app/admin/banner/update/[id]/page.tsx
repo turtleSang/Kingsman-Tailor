@@ -23,8 +23,7 @@ export default async function UpdateBannerPage({
       imageUrl: string;
       link: string;
     };
-    const filePath = path.join(process.cwd(), "public", imageUrl);
-    const file = (await fs.promises.readFile(filePath)) || null;
+
     return (
       <FormUpdateBanner
         description={description}
@@ -34,6 +33,8 @@ export default async function UpdateBannerPage({
       />
     );
   } catch (error) {
+    console.log(error);
+
     return (
       <div>
         <NotFound

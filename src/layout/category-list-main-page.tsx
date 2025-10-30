@@ -8,6 +8,8 @@ import axios from "axios";
 import clsx from "clsx";
 import { prisma } from "../../libs/prisma";
 
+export const revalidate = 60;
+
 export default async function CategoryListMainPage() {
   try {
     const list = await prisma.category.findMany();

@@ -5,6 +5,8 @@ import NotFound from "@/components/not-found";
 import CardPost from "@/components/post/card-post";
 import Link from "next/link";
 
+export const revalidate = 60;
+
 export default async function PostListMainPage() {
   const listPost = await prisma.post.findMany({
     skip: 0,

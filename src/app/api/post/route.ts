@@ -32,7 +32,7 @@ export async function POST(req: Request) {
                 title,
                 link,
                 excerpt,
-                thumnail: `${postImage}/${fileName}`
+                thumnail: `api/image/${postImage}/${fileName}`
             }
         });
         await SaveFile(image, postImage, fileName);
@@ -76,9 +76,8 @@ export async function PUT(req: Request) {
         );
     }
     if (oldPost.thumnail) {
-        const oldPathThumbnail = path.join(process.cwd(), "public", oldPost.thumnail);
-        if (await CheckFileExist(oldPathThumbnail)) {
-            await RemoveFile(oldPathThumbnail);
+        if (await CheckFileExist(oldPost.thumnail)) {
+            await RemoveFile(oldPost.thumnail);
         }
     }
 
@@ -92,7 +91,7 @@ export async function PUT(req: Request) {
                 link,
                 title,
                 excerpt,
-                thumnail: `${postImage}/${fileName}`
+                thumnail: `api/image/${postImage}/${fileName}`
             }
         });
         await SaveFile(image, postImage, fileName);

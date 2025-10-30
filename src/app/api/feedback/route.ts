@@ -23,7 +23,7 @@ export async function POST(request: Request) {
     try {
         const fileName = `${NametoLink(customerName)}-${Date.now()}.${imageFile.name.split(".").pop()}`;
         await SaveFile(imageFile, feedbackImage, fileName);
-        const image = `${feedbackImage}/${fileName}`;
+        const image = `api/image/${feedbackImage}/${fileName}`;
 
         const newFeedBack = await prisma.feedBack.create({
             data: {
@@ -97,15 +97,14 @@ export async function PUT(req: Request) {
     }
 
     if (oldFeedback.image) {
-        const pathOldImage = path.join(process.cwd(), 'public', oldFeedback.image);
-        if (await CheckFileExist(pathOldImage)) {
-            await RemoveFile(pathOldImage)
+        if (await CheckFileExist(oldFeedback.image)) {
+            await RemoveFile(oldFeedback.image)
         }
     }
     try {
         const fileName = `${NametoLink(customerName)}-${Date.now()}.${imageFile.name.split(".").pop()}`;
         await SaveFile(imageFile, feedbackImage, fileName);
-        const image = `${feedbackImage}/${fileName}`;
+        const image = `api/image/${feedbackImage}/${fileName}`;
 
         const feedBackUpdated = await prisma.feedBack.update({
             where: {
@@ -129,9 +128,8 @@ export async function DELETE(req: Request) {
     try {
         const feedbackDeleted = await prisma.feedBack.delete({ where: { id } });
         if (feedbackDeleted.image) {
-            const pathOldImage = path.join(process.cwd(), 'public', feedbackDeleted.image);
-            if (await CheckFileExist(pathOldImage)) {
-                await RemoveFile(pathOldImage)
+            if (await CheckFileExist(feedbackDeleted.image)) {
+                await RemoveFile(feedbackDeleted.image)
             }
         }
         return NextResponse.json({ message: `Đã xóa thành công feed back của khách hàng ${feedbackDeleted.customerName}` }, { status: 200 })

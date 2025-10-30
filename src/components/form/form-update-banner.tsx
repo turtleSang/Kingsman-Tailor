@@ -33,12 +33,12 @@ export default function FormUpdateBanner({
 
   const handleDescription = (event: FormEvent<HTMLTextAreaElement>) => {
     const value = event.currentTarget.value;
-    setInputDescripton(value.trim());
+    setInputDescripton(value);
   };
 
   const handleLink = (event: FormEvent<HTMLInputElement>) => {
     const value = event.currentTarget.value;
-    setInputLink(value.trim());
+    setInputLink(value);
   };
 
   const handleFileUpdate = (file: File) => {

@@ -1,13 +1,12 @@
-import Image from "next/image";
 import type { Metadata } from "next";
-import BannerItem from "@/components/banner/banner-item";
 import Slider from "@/components/banner/slider";
 import ProductNewMainPage from "@/layout/product-new-main-page";
 import CategoryListMainPage from "@/layout/category-list-main-page";
-import Loading from "@/components/loading";
 import FeedBackListMainPage from "@/layout/feedback-list-main-page";
 import IntroMainPage from "@/layout/intro-main-page";
 import PostListMainPage from "@/layout/post-list-main-page";
+
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://kingsman-tailor.vn"),

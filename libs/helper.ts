@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 
 
-const publicDir = path.join(process.cwd(), "public");
+const publicDir = path.join(process.cwd(), "upload");
 
 export const NametoLink = (name: string) => {
     return name.normalize('NFD')                     // Tách ký tự gốc và dấu
@@ -16,8 +16,10 @@ export const NametoLink = (name: string) => {
         .toLowerCase();                       // Chuyển về chữ thườ
 }
 
-export const CheckFileExist = async (filePath: string): Promise<boolean> => {
+export const CheckFileExist = async (urlLink: string): Promise<boolean> => {
     try {
+        const [folder, fileName] = urlLink.split('/').slice(-2);
+        const filePath = path.join(publicDir, folder, fileName)
         await fs.promises.access(filePath, fs.constants.F_OK);
         return true;
     } catch (error) {
@@ -25,19 +27,16 @@ export const CheckFileExist = async (filePath: string): Promise<boolean> => {
     }
 }
 
-export const RemoveFile = async (filePath: string): Promise<void> => {
+export const RemoveFile = async (urlLink: string): Promise<void> => {
     try {
+        const [folder, fileName] = urlLink.split('/').slice(-2);
+        const filePath = path.join(publicDir, folder, fileName)
         await fs.promises.unlink(filePath);
-
     } catch (error) {
-        console.error(`Error deleting file: ${filePath}`, error);
+        console.error(`Error deleting file: ${urlLink}`, error);
     }
 }
 
-export const RemoveAndCheckFile = async (link: string): Promise<void> => {
-    const filePath = path.join(publicDir, link)
-    console.log(filePath)
-}
 
 export const SaveFile = async (file: File, folderName: string, filename: string,) => {
     try {
@@ -54,4 +53,15 @@ export const SaveFile = async (file: File, folderName: string, filename: string,
     }
 }
 
+export const ReadFile = async (filePath: string) => {
+    const bufferArray = await fs.promises.readFile(filePath);
+    const fileType = filePath.endsWith(".jpg")
+        ? "image/jpeg"
+        : filePath.endsWith(".png")
+            ? "image/png"
+            : "application/octet-stream";
+
+    const file = Buffer.from(bufferArray)
+    return { file, fileType }
+}
 

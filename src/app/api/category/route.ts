@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/../libs/prisma";
-import { CheckFileExist, NametoLink, RemoveAndCheckFile, RemoveFile, SaveFile } from "../../../../libs/helper";
+import { CheckFileExist, NametoLink, RemoveFile, SaveFile } from "../../../../libs/helper";
 import path from "path";
 import { categoryFolderImage } from "../../../../libs/constance";
 import { getServerSession } from "next-auth";
@@ -25,9 +25,8 @@ export async function POST(req: Request) {
 
     if (cateImg) {
         fileName = `${cateLink}-${Date.now()}.${cateImg.name.split('.').pop()}`;
-        imgUrl = `${categoryFolderImage}/${fileName}`;
+        imgUrl = `api/image/${categoryFolderImage}/${fileName}`;
     }
-
 
     try {
         const newCate = await prisma.category.create({
@@ -93,15 +92,14 @@ export async function PUT(req: Request,) {
         if (cateImg) {
             //Delete old image
             if (category.urlImg) {
-                const oldCategoryImagePath = path.join(process.cwd(), "public", category.urlImg)
-                if (await CheckFileExist(oldCategoryImagePath)) {
-                    await RemoveFile(oldCategoryImagePath)
+                if (await CheckFileExist(category.urlImg)) {
+                    await RemoveFile(category.urlImg)
                 }
             }
             //Save new Image
             const fileName = `${newLink}-${Date.now()}.${cateImg.name.split('.').pop()}`;
             await SaveFile(cateImg, categoryFolderImage, fileName)
-            newImgLink = `${categoryFolderImage}/${fileName}`;
+            newImgLink = `api/image/${categoryFolderImage}/${fileName}`;
         }
         const cateUpdate = await prisma.category.update({
             where: { id: id },
@@ -131,11 +129,13 @@ export async function DELETE(req: Request) {
     }
 
     try {
-        await prisma.category.delete({ where: { id } })
-        if (category.urlImg) {
-            const thumbnailPath = path.join(process.cwd(), 'public', category.urlImg)
-            if (await CheckFileExist(thumbnailPath)) {
-                await RemoveFile(thumbnailPath)
+        const categoryDeleted = await prisma.category.delete({ where: { id } })
+
+
+        if (categoryDeleted.urlImg) {
+            if (await CheckFileExist(categoryDeleted.urlImg)) {
+                console.log(categoryDeleted.urlImg);
+                await RemoveFile(categoryDeleted.urlImg)
             }
         }
         return NextResponse.json({ message: `Xóa thành công category ${category.name}` }, { status: 200 })

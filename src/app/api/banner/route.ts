@@ -23,7 +23,7 @@ export async function POST(req: Request) {
         const fileName = `${Date.now()}${image.name}`;
         await SaveFile(image, bannerImage, fileName);
 
-        const imageUrl = `${bannerImage}/${fileName}`;
+        const imageUrl = `api/image/${bannerImage}/${fileName}`;
 
         const banner = await prisma.banner.create({
             data: {
@@ -65,13 +65,12 @@ export async function PUT(req: Request) {
     }
 
     try {
-        const oldImagePath = path.join(process.cwd(), "public", banner.imageUrl)
-        if (await CheckFileExist(oldImagePath)) {
-            await RemoveFile(oldImagePath)
+        if (await CheckFileExist(banner.imageUrl)) {
+            await RemoveFile(banner.imageUrl)
         }
         const fileName = `${Date.now()}${image.name}`;
         await SaveFile(image, bannerImage, fileName);
-        const imageUrl = `${bannerImage}/${fileName}`;
+        const imageUrl = `api/image/${bannerImage}/${fileName}`;
         const bannerUpdated = await prisma.banner.update({
             where: {
                 id: Number(id)
@@ -112,14 +111,12 @@ export async function DELETE(req: Request) {
     }
     try {
         const banner = await prisma.banner.delete({ where: { id } })
-        const pathImage = path.join(process.cwd(), "public", banner.imageUrl)
-        if (await CheckFileExist(pathImage)) {
-            await RemoveFile(pathImage)
+        if (await CheckFileExist(banner.imageUrl)) {
+            await RemoveFile(banner.imageUrl)
         }
         return NextResponse.json({ message: `Đã xóa banner ${banner.id}` })
     } catch (error) {
         return NextResponse.json({ message: 'Lỗi hệ thống' }, { status: 500 });
-
     }
 
 
