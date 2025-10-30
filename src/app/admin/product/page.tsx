@@ -54,7 +54,6 @@ export default function PageProductAdmin() {
         />
       )}
       {listProduct.map((item) => {
-        console.log(item.thumbnail);
         return (
           <div
             className="flex flex-row justify-start items-center  bg-secondary p-3 rounded-lg"

@@ -8,14 +8,22 @@ const fetchSimple = async (url: string) => {
 
 export const useCategory = () => {
     const url = `${process.env.NEXT_PUBLIC_API_URL}/category`;
-    const { data, error, isLoading } = useSWR(url, fetchSimple);
+    const { data, error, isLoading } = useSWR(url, fetchSimple, {
+        dedupingInterval: 60000,
+        revalidateOnFocus: false,
+        revalidateOnReconnect: true
+    });
     const categories = data as { id: number, name: string, link: string, urlImg: string }[]
     return { categories, error, isLoading };
 }
 
 export const useBanner = () => {
     const url = `${process.env.NEXT_PUBLIC_API_URL}/banner`;
-    const { data, error, isLoading } = useSWR(url, fetchSimple);
+    const { data, error, isLoading } = useSWR(url, fetchSimple, {
+        dedupingInterval: 60000,
+        revalidateOnFocus: false,
+        revalidateOnReconnect: true
+    });
     const banners = data as { id: number, imageUrl: string, link: string, description: string }[]
     return { banners, error, isLoading }
 }

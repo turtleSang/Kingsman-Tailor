@@ -34,18 +34,22 @@ export default function InputImageSingle({
     return URL.createObjectURL(file);
   };
 
+  async function UrlToFile(url: string, oldFile: String) {
+    const response = await fetch(url);
+    const blob = await response.blob();
+    const fileName = oldFile.split("/").pop();
+    const file = new File([blob], fileName ? fileName : "oldImage", {
+      type: blob.type,
+    });
+
+    handleFile(file);
+    setPreviewUrl(imageToURL(file));
+  }
+
   useEffect(() => {
     if (oldFile) {
       const url = `${process.env.NEXT_PUBLIC_URL}/${oldFile}`;
-      async function UrlToFile(url: string) {
-        const response = await fetch(url);
-        const blob = await response.blob();
-        const file = new File([blob], "oldImage", { type: blob.type });
-        handleFile(file);
-        setPreviewUrl(imageToURL(file));
-      }
-
-      UrlToFile(url);
+      UrlToFile(url, oldFile);
     }
   }, []);
 

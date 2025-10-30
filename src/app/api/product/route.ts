@@ -141,6 +141,10 @@ export async function DELETE(req: Request) {
 }
 
 export async function PUT(req: Request) {
+    const session = await getServerSession();
+    if (!session) {
+        return NextResponse.json({ message: "Không có quyền" }, { status: 403 });
+    }
     const formData = await req.formData();
     const id = formData.get("id")?.toString() || "0";
     const name = formData.get('name')?.toString() || '';
@@ -150,6 +154,7 @@ export async function PUT(req: Request) {
     const listImg = formData.getAll('images') as File[] || [];
     const thumbnailFile = formData.get('thumbnail') as File | null;
     let thumbnail = "";
+
 
     const productOld = await prisma.product.findFirst({
         where: {
@@ -177,7 +182,6 @@ export async function PUT(req: Request) {
             id: Number(categoryId)
         }
     });
-
 
     if (category === null) {
         return NextResponse.json({ message: "Danh mục không tồn tại" }, { status: 404 })

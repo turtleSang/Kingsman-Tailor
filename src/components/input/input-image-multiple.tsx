@@ -41,8 +41,29 @@ export default function InputImageMultiple({
   useEffect(() => {
     if (listOldImage.length > 0) {
       setListPreviewImage(listOldImage);
+      ListOldImgToFile(listOldImage);
     }
   }, []);
+
+  async function ListOldImgToFile(listOldImage: string[]) {
+    const listFile = await Promise.all(
+      listOldImage.map((oldImage) => {
+        const url = `${process.env.NEXT_PUBLIC_URL}/${oldImage}`;
+        return UrlToFile(url, oldImage);
+      })
+    );
+    handleMultipleFile(listFile);
+  }
+
+  async function UrlToFile(url: string, oldFile: String) {
+    const response = await fetch(url);
+    const blob = await response.blob();
+    const fileName = oldFile.split("/").pop();
+    const file = new File([blob], fileName ? fileName : "oldImage", {
+      type: blob.type,
+    });
+    return file;
+  }
 
   return (
     <div className="mt-2">

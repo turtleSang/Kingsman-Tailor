@@ -1,6 +1,9 @@
 import { ProductDetailProps } from "@/components/product/product-detail";
-import axios from "axios";
+
 import { Metadata } from "next";
+import { prisma } from "../../../../../../libs/prisma";
+
+export const revalidate = 60;
 
 export async function generateMetadata({
   params,
@@ -8,41 +11,41 @@ export async function generateMetadata({
   params: Promise<{ product: string }>;
 }): Promise<Metadata> {
   const { product } = await params;
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/product/detail/`;
+  const productFinded = await prisma.product.findUnique({
+    where: { link: product },
+  });
 
-  const res = await axios.get(url, { params: { product } });
-
-  if (!res.data) {
+  if (!productFinded) {
     return {
       title: "Sản phẩm không tồn tại - Kingsman Tailor",
       description: "Sản phẩm bạn đang tìm kiếm không tồn tại.",
     };
   }
-
-  const productProps = res.data as ProductDetailProps;
-
   return {
-    title: `${productProps.name}`,
-    description: productProps.description,
+    title: `${productFinded.name}`,
+    description: productFinded.description,
     openGraph: {
-      title: productProps.name,
-      description: productProps.description,
+      title: productFinded.name,
+      description: productFinded.description || "Sản phẩm Kingsman",
       images: [
         {
-          url: `/${productProps.thumbnail}` || "/default.jpg",
+          url: `/${productFinded.thumbnail}` || "/default.jpg",
           width: 800,
           height: 600,
-          alt: productProps.name,
+          alt: productFinded.name,
         },
       ],
     },
-    twitter: {
-      card: "summary_large_image",
-      title: productProps.name,
-      description: productProps.description,
-      images: [`/${productProps.thumbnail}`],
-    },
   };
+}
+
+export async function generateStaticParams() {
+  const productList = await prisma.product.findMany({
+    select: { link: true },
+  });
+  return productList.map((item) => ({
+    product: item.link,
+  }));
 }
 
 export default function LayoutProduct({

@@ -2,8 +2,9 @@ import NotFound from "@/components/not-found";
 import ProductDetail, {
   ProductDetailProps,
 } from "@/components/product/product-detail";
-import axios from "axios";
 import { prisma } from "../../../../../../libs/prisma";
+
+export const revalidate = 60;
 
 export default async function PageProductDetail({
   params,
@@ -13,7 +14,7 @@ export default async function PageProductDetail({
   const { product } = await params;
 
   try {
-    const res = await prisma.product.findUnique({
+    const res = await prisma.product.findUniqueOrThrow({
       where: { link: product },
       include: { category: true, imagesUrl: true },
     });

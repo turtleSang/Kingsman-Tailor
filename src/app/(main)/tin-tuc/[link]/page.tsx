@@ -4,6 +4,8 @@ import Image from "next/image";
 import { LogoFont } from "@/app/layout";
 import { Metadata } from "next";
 
+export const revalidate = 300;
+
 export async function generateMetadata({
   params,
 }: {
@@ -24,6 +26,11 @@ export async function generateMetadata({
       images: [{ url: `/${post.thumnail}`, width: 1280, height: 720 }],
     },
   };
+}
+
+export async function generateStaticParams() {
+  const postList = await prisma.post.findMany({ select: { link: true } });
+  return postList.map((item) => ({ link: item.link }));
 }
 
 export default async function PostPage({

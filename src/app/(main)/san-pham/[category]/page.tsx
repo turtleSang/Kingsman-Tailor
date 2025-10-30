@@ -3,6 +3,8 @@ import ListProductCardSkeleton from "@/components/skeleton/ListProductCardSkelet
 import { Metadata } from "next";
 import { prisma } from "../../../../../libs/prisma";
 
+export const revalidate = 60;
+
 export async function generateMetadata({
   params,
 }: {
@@ -24,6 +26,13 @@ export async function generateMetadata({
       ],
     },
   };
+}
+
+export async function generateStaticParams() {
+  const categoryList = await prisma.category.findMany({
+    select: { link: true },
+  });
+  return categoryList.map((item) => ({ category: item.link }));
 }
 
 export default async function PageProductByCategory({
