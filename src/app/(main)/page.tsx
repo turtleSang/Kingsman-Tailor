@@ -9,7 +9,7 @@ import PostListMainPage from "@/layout/post-list-main-page";
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://kingsman-tailor.vn"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_URL || "http://localhost:3000"),
   title: "Kingsman - Âu Phục May Đo Cao Cấp",
   description:
     "May đo âu phục, vest, suit, tuxedo cao cấp tại Thành phố Hồ Chí Minh. Thiết kế và cắt may thủ công, vừa vặn hoàn hảo theo phong cách độc quyền của quý khách.",
@@ -27,7 +27,13 @@ export const metadata: Metadata = {
       "May đo âu phục cao cấp, sử dụng vải Ý/Anh, cắt may thủ công để tạo nên bộ suit vừa vặn hoàn hảo, thể hiện phong cách riêng của bạn.",
     type: "website",
     locale: "vi-VN",
-    images: [{ url: "/default.jpg", width: 1280, height: 720 }],
+    images: [
+      {
+        url: `${process.env.NEXT_PUBLIC_URL}/default.jpg`,
+        width: 1280,
+        height: 720,
+      },
+    ],
   },
 };
 

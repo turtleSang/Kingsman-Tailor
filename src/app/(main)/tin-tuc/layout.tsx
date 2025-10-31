@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     url: `${process.env.NEXT_PUBLIC_URL}/tin-tuc`,
     images: [
       {
-        url: "/default.jpg",
+        url: `${process.env.NEXT_PUBLIC_URL}/default.jpg`,
         width: 1200,
         height: 630,
         alt: "Kingsman Tailor - Tin tức thời trang nam cao cấp",
