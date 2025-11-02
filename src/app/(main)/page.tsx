@@ -5,6 +5,7 @@ import CategoryListMainPage from "@/layout/category-list-main-page";
 import FeedBackListMainPage from "@/layout/feedback-list-main-page";
 import IntroMainPage from "@/layout/intro-main-page";
 import PostListMainPage from "@/layout/post-list-main-page";
+import { prisma } from "../../../libs/prisma";
 
 export const revalidate = 60;
 
@@ -37,10 +38,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Home() {
+export default async function Home() {
+  const banners = await prisma.banner.findMany();
   return (
     <div className="">
-      <Slider />
+      <Slider banners={banners} />
       <CategoryListMainPage />
       <IntroMainPage />
       <ProductNewMainPage />

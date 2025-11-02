@@ -27,7 +27,7 @@ export default function CardPost({
           src={`/${thumbnail}`}
           fill
           alt={title}
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          sizes="(max-width: 1200px) 80vw, 40vw"
         />
       </div>
       <div className="p-3 w-full lg:w-1/2">

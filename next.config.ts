@@ -7,12 +7,7 @@ const nextConfig: NextConfig = {
   /* config options here */
   images: {
     remotePatterns: [
-      {
-        protocol: (parsedUrl.protocol.replace(":", "") as 'http' | 'https'),
-        hostname: parsedUrl.hostname,
-        port: parsedUrl.port,
-        pathname: parsedUrl.pathname === "/" ? "/:path*" : `${parsedUrl.pathname}:path*`,
-      },
+      parsedUrl,
     ],
   },
   experimental: {

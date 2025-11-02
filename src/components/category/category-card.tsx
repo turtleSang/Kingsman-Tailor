@@ -24,7 +24,7 @@ export default function CategoryCard({
           src={`/${urlImg}`}
           alt={`Danh mục sản phẩm ${name}`}
           fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          sizes="(max-width: 768px) 70vw, (max-width: 1200px) 30vw, 25vw"
           priority
         />
       </div>

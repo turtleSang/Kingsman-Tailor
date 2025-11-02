@@ -31,7 +31,7 @@ export default function ProductCard({
           src={`/${thumbnail}`}
           fill
           alt={name}
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          sizes="(max-width: 1200px) 50vw, 33vw"
         />
       </div>
       <div className="bg-secondary/75 lg:absolute lg:w-full lg:bottom-0 lg:left-0 p-2 lg:translate-y-2/3 group-hover:translate-y-0 duration-200">

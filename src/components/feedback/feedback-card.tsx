@@ -21,6 +21,7 @@ export default function FeedBackCard({
         <Image
           alt={`customer ${customerName} feedback`}
           fill
+          sizes="70vw"
           src={`/${image}`}
         />
       </div>
@@ -35,7 +36,7 @@ export default function FeedBackCard({
         </h3>
         <p className="">
           <span className="text-xs md:text-xl">
-            " {truncateWords(feedback, 30)} "
+            "{truncateWords(feedback, 30)} "
           </span>
         </p>
       </div>

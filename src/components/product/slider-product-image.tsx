@@ -35,7 +35,7 @@ export default function SilderProductImage({
                 alt={`${name} - ${index + 1}`}
                 fill
                 className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
+                sizes="(max-width: 1200px) 50vw, 100vw"
                 priority={index === 0}
               />
             </div>
@@ -61,6 +61,7 @@ export default function SilderProductImage({
                 alt={`Thumbnail ${index + 1}`}
                 fill
                 className="object-cover hover:opacity-80 transition"
+                sizes="(max-width: 1200px) 10vw, 5vw"
               />
             </div>
           </SwiperSlide>

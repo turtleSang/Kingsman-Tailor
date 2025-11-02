@@ -15,12 +15,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { motion } from "motion/react";
 
-export default function Slider() {
-  const { banners, error, isLoading } = useBanner();
+export default function Slider({
+  banners,
+}: {
+  banners: {
+    id: number;
+    imageUrl: string;
+    link: string | null;
+    description: string | null;
+  }[];
+}) {
   return (
     <div className="relative">
-      {isLoading && <BannerSkeleton />}
-      {error && <NotFound title="Không tìm thấy banner" />}
       {banners && (
         <Swiper
           modules={[Pagination, Autoplay]}
@@ -35,8 +41,8 @@ export default function Slider() {
                 <SwiperSlide key={item.id}>
                   <BannerItem
                     imageUrl={item.imageUrl}
-                    link={item.link}
-                    description={item.description}
+                    link={item.link || ""}
+                    description={item.description || ""}
                   />
                 </SwiperSlide>
               );
