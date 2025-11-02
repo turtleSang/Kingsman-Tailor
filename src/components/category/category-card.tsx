@@ -26,6 +26,7 @@ export default function CategoryCard({
           fill
           sizes="(max-width: 768px) 70vw, (max-width: 1200px) 30vw, 25vw"
           priority
+          fetchPriority="high"
         />
       </div>
       <h3 className="text-xl text-center uppercase text-primary py-2">

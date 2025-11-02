@@ -24,6 +24,7 @@ export default function Logo() {
           alt="Logo Kingsman Tailor"
           width={50}
           height={50}
+          priority
         />
       </motion.div>
 
